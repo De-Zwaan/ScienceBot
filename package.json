@@ -1,0 +1,37 @@
+{
+  "name": "discordbot",
+  "version": "1.0.1",
+  "description": "A discord bot",
+  "main": "app.js",
+  "dependencies": {
+    "async": "^2.6.2",
+    "bufferutil": "^4.0.1",
+    "discord-rpc": "^3.0.1",
+    "discord.js": "^11.5.1",
+    "enmap": "^4.8.1",
+    "googleapis": "^39.2.0",
+    "help": "^3.0.2",
+    "long": "^4.0.0",
+    "node-fetch": "^2.3.0",
+    "snekfetch": "^4.0.4",
+    "websocket": "^1.0.28",
+    "winston": "^3.2.1",
+    "ws": "^6.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bot": "node app.js"
+  },
+  "keywords": [
+    "RPC",
+    "Discord",
+    "Bot",
+    "rich",
+    "presence",
+    "discord.js",
+    "discord-rpc"
+  ],
+  "author": "De_Zwaan",
+  "license": "ISC"
+}

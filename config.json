@@ -1,0 +1,27 @@
+{
+  "token": "NTAwNjYxNTQ1OTQ5MjAwNDA0.DqOPhw.VWn1181L_zrHc_qKigBH1Tb881I",
+  "RPCToken": "LwgqMZA0eMobe46NdJ3SROK9pAwJNSTS",
+  "prefix": "s!",
+  "BotClientID": "500661545949200404",
+  "RPCClientID": "557563275143938048",
+  "ownerID": "427731780301357057",
+  "TESTID": "500671784627208205",
+  "access_token": "ya29.GlugBkk_HL9R4iKWqwmQde8NvCho27eHit5Uym5L1MJH5LcSAl0rhykwRjp6xpV-4b9efHsPZ76-LUAubJYsvN3zEF6BQy9lZi5zlGs8FVcNmiSiwOm_HbHvTD-w",
+  "refresh_token": "1/dUdZTuviXhgTPFLW_KUj7ivFwhEbENmG3-4Fi4G8hWtFF2V5YJGh2ejsD0kx-ifF",
+  "scope": "https://www.googleapis.com/auth/spreadsheets.readonly",
+  "token_type": "Bearer",
+  "expiry_date": 1548772898733,
+  
+  "installed": {
+    "client_id": "1082779415899-o99peuon3maoe2t9koi6i530lkrev6j9.apps.googleusercontent.com",
+    "project_id": "quickstart-1548766392709",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret": "MYEi5TIcsRccoKMO9DUqEMQB",
+    "redirect_uris": [
+      "urn:ietf:wg:oauth:2.0:oob",
+      "http://localhost"
+    ]
+  }
+}

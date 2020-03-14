@@ -1,0 +1,237 @@
+exports.run = (client, message, args) => {
+
+    if (args == undefined) {
+        args = [];
+    }
+
+    const fs = require('fs');
+    const readline = require('readline');
+    const { google } = require('googleapis');
+
+    // If modifying these scopes, delete token.json.
+    const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
+
+    const TOKEN_PATH = 'token.json';
+
+    // Load client secrets from a local file.
+    fs.readFile('credentials.json', (err, content) => {
+        if (err) return console.log('Error loading client secret file:', err);
+        // Authorize a client with credentials, then call the Google Sheets API.
+        authorize(JSON.parse(content), quoteGetter);
+    });
+
+    function authorize(credentials, callback) {
+        const { client_secret, client_id, redirect_uris } = credentials.installed;
+        const oAuth2Client = new google.auth.OAuth2(
+            client_id, client_secret, redirect_uris[0]);
+
+        // Check if we have previously stored a token.
+        fs.readFile(TOKEN_PATH, (err, token) => {
+            if (err) return getNewToken(oAuth2Client, callback);
+            oAuth2Client.setCredentials(JSON.parse(token));
+            callback(oAuth2Client, args);
+        });
+    }
+
+    function getNewToken(oAuth2Client, callback) {
+        const authUrl = oAuth2Client.generateAuthUrl({
+            access_type: 'offline',
+            scope: SCOPES,
+        });
+        console.log('Authorize this app by visiting this url:', authUrl);
+        const rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout,
+        });
+        rl.question('Enter the code from that page here: ', (code) => {
+            rl.close();
+            oAuth2Client.getToken(code, (err, token) => {
+                if (err) return console.error('Error while trying to retrieve access token', err);
+                oAuth2Client.setCredentials(token);
+                // Store the token to disk for later program executions
+                fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+                    if (err) console.error(err);
+                    console.log('Token stored to', TOKEN_PATH);
+                });
+                callback(oAuth2Client, args);
+            });
+        });
+    }
+
+    function quoteGetter(auth, args) {
+        const sheets = google.sheets({ version: 'v4', auth });
+        const Id = '1VMfOyKhksxGLifxPoA58seul2XvvGV7db8-deVYxB4s'
+
+        sheets.spreadsheets.values.get(
+            {
+                spreadsheetId: Id,
+                range: 'Quotes!A2:D', //get the author, quote and date
+            },
+
+            function (err, res) {
+                if (err) return console.log('The API returned an error: ' + err);
+
+                quoteProcessor(res.data.values, args);
+            }
+        );
+    }
+
+    function quoteProcessor(data, args) {
+        if (args.length <= 0) {
+
+            for (i = 0; i < data.length; i++) {
+                if (!data[i][0]) {
+                    data.splice(i, 1);
+                    i--;
+                }
+            }
+
+            let result = getRandomQuote(data);
+
+            message.channel.send(result);
+            console.log(`Requested random quote: ${result}, by "${message.author.username}"`);
+
+        } else {
+            if (args[0] == 'random' || args[0].toLowerCase() == `r`) {
+                let result = getRandomQuote(data);
+
+                message.channel.send(result);
+                console.log(`Requested random quote: ${result}, by "${message.author.username}"`);
+            } else if (args[0].toLowerCase() == `list` || args[0].toLowerCase() == `l`) {
+                // Display list of all quotes
+                listQuotes(data);
+
+            } else if (args[0].toLowerCase() == `search` || args[0].toLowerCase() == `s`) {
+                // When the search command is included
+
+                args.shift();
+
+                let lastArg = args[args.length - 1].toLowerCase();
+
+                if (lastArg != `list` && lastArg != `random` && lastArg != `l` && lastArg != `r`) {
+                    args.push("random");
+                }
+
+                let end = args.length - 1;
+
+                let keywords = args.slice(0, end);
+
+                let found = searchQuotes(keywords, data);
+
+                if (found.length <= 0) {
+                    // When no quote containing the keywords was found
+                    message.channel.send(`Couldn't find any quotes containing the keyword(s) "${keywords.join(`", "`)}"... Try some other keywords.`);
+                    console.log(`Found no quotes matching: "${keywords.join(`", "`)}", search executed by "${message.author.username}"`);
+
+                } else {
+                    lastArg = args[end].toLowerCase();
+
+                    if (lastArg == `list` || lastArg.toLowerCase() == `l`) {
+                        // If the user includes "list" on the end of the s!quote command
+                        result = listQuotes(found);
+
+                    } else if (lastArg == `random` || lastArg == undefined || lastArg == `r`) {
+                        // If the user includes "random" on the end of the s!quote command or does not include a keyword
+                        result = getRandomQuote(found);
+
+                        message.channel.send(result);
+                        console.log(`Searched the quotes database using "${keywords.join(`", "`)}", for "${message.author.username}". Found ${found.length} results. Returned: ${result}`);
+                    }
+                }
+            }
+        }
+    }
+
+    function searchQuotes(keywords, quotes) {
+        //message.channel.send("This feature has temporarly been disabled, sorry for the inconvenience.");
+
+        let start = [];
+
+        for (keyword of keywords) {
+            // test for every keyword
+
+            for (quote of quotes) {
+                // test every quote
+
+                for (prop of quote) {
+                    // test for every property
+
+                    if (prop.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) {
+                        start.push(quote)
+                    }
+                }
+            }
+        }
+
+        return start;
+    }
+
+
+    function listQuotes(rows) {
+        message.channel.send(`This feature is not added yet. SoonTM`);
+        console.log(`${message.author.username} tried to be sneaky and tried to access the list feature...`);
+        // message.channel.send({
+        //     "embed": {
+        //         "description": "View the whole spreadsheet with quotes [here](https://docs.google.com/spreadsheets/d/1VMfOyKhksxGLifxPoA58seul2XvvGV7db8-deVYxB4s/edit?usp=sharing).",
+        //         "color": 14805148,
+        //         "fields": [
+        //             {
+        //                 "name": "test",
+        //                 "value": "test"
+        //             },
+
+        //         ],
+        //         "footer": {
+        //             "text": "Page " + index + " of " + pages.length
+        //         },
+        //     }
+        // })
+    }
+
+    function getRandomQuote(rows) {
+        let random;
+        let quote;
+        let date;
+        let quoter;
+        let result;
+
+        random = Math.floor(Math.random() * rows.length);
+        quote = rows[random];
+
+        if (!quote || quote == undefined) {
+            result = getRandomQuote(rows);
+        }
+
+        quoter = getQuoter(quote);
+
+        date = new Date(quote[3]).getFullYear();
+
+        result = `"${quote[2]}" -${quoter} ${date}`;
+        // console.log(result);
+        return result;
+    }
+
+    function getQuoter(quote) {
+        quoter = message.guild.members.get(quote[1]);
+
+        if (!quoter) {
+            let q = quote[0].split("#")[0].split("@");
+            if (q.length <= 1) {
+                quoterName = q[0];
+            } else {
+                quoterName = q[1];
+            }
+        } else {
+            if (quoter.nickname && quoter.nickname != "null") {
+                quoterName = quoter.nickname;
+            } else if (quoter.user.username != "null") {
+                quoterName = quoter.user.username;
+
+            }
+        }
+        return quoterName;
+    }
+
+    message.delete();
+}
+

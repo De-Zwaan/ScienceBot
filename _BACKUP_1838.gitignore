@@ -1,14 +1,30 @@
+<<<<<<< HEAD
 node_modules/.bin/gp12-pem.cmd
 node_modules/.bin/mime
 node_modules/.bin/mime.cmd
 node_modules/.bin/node-gyp-build-optional.cmd
+=======
+.vscode/settings.json
+node_modules/.bin/gp12-pem
+node_modules/.bin/gp12-pem.cmd
+node_modules/.bin/mime
+node_modules/.bin/mime.cmd
+node_modules/.bin/node-gyp-build
+node_modules/.bin/node-gyp-build-optional
+node_modules/.bin/node-gyp-build-optional.cmd
+node_modules/.bin/node-gyp-build-test
+>>>>>>> DiscordBot/master
 node_modules/.bin/node-gyp-build-test.cmd
 node_modules/.bin/node-gyp-build.cmd
 node_modules/.bin/semver
 node_modules/.bin/semver.cmd
+<<<<<<< HEAD
+node_modules/.bin/uuid.cmd
+=======
 node_modules/.bin/uuid
 node_modules/.bin/uuid.cmd
 node_modules/.bin/wtfnode
+>>>>>>> DiscordBot/master
 node_modules/.bin/wtfnode.cmd
 node_modules/abort-controller/browser.js
 node_modules/abort-controller/browser.mjs
@@ -24,6 +40,21 @@ node_modules/abort-controller/dist/abort-controller.mjs
 node_modules/abort-controller/dist/abort-controller.mjs.map
 node_modules/abort-controller/dist/abort-controller.umd.js
 node_modules/abort-controller/dist/abort-controller.umd.js.map
+<<<<<<< HEAD
+node_modules/agent-base/package.json
+node_modules/agent-base/README.md
+node_modules/agent-base/dist/src/index.d.ts
+node_modules/agent-base/dist/src/index.js
+node_modules/agent-base/dist/src/index.js.map
+node_modules/agent-base/dist/src/promisify.d.ts
+node_modules/agent-base/dist/src/promisify.js
+node_modules/agent-base/dist/src/promisify.js.map
+node_modules/arrify/index.d.ts
+node_modules/arrify/index.js
+node_modules/arrify/license
+node_modules/arrify/package.json
+node_modules/arrify/readme.md
+=======
 node_modules/agent-base/.travis.yml
 node_modules/agent-base/History.md
 node_modules/agent-base/index.d.ts
@@ -34,6 +65,7 @@ node_modules/agent-base/README.md
 node_modules/agent-base/test/ssl-cert-snakeoil.key
 node_modules/agent-base/test/ssl-cert-snakeoil.pem
 node_modules/agent-base/test/test.js
+>>>>>>> DiscordBot/master
 node_modules/async/all.js
 node_modules/async/allLimit.js
 node_modules/async/allSeries.js
@@ -167,11 +199,18 @@ node_modules/async/internal/setImmediate.js
 node_modules/async/internal/slice.js
 node_modules/async/internal/withoutIndex.js
 node_modules/async/internal/wrapAsync.js
+<<<<<<< HEAD
+node_modules/async-limiter/.eslintignore
+node_modules/async-limiter/.nycrc
+=======
+>>>>>>> DiscordBot/master
 node_modules/async-limiter/.travis.yml
 node_modules/async-limiter/index.js
 node_modules/async-limiter/LICENSE
 node_modules/async-limiter/package.json
 node_modules/async-limiter/readme.md
+<<<<<<< HEAD
+=======
 node_modules/async-limiter/coverage/coverage.json
 node_modules/async-limiter/coverage/lcov.info
 node_modules/async-limiter/coverage/lcov-report/base.css
@@ -182,15 +221,19 @@ node_modules/async-limiter/coverage/lcov-report/sort-arrow-sprite.png
 node_modules/async-limiter/coverage/lcov-report/sorter.js
 node_modules/async-limiter/coverage/lcov-report/async-throttle/index.html
 node_modules/async-limiter/coverage/lcov-report/async-throttle/index.js.html
+>>>>>>> DiscordBot/master
 node_modules/base64-js/base64js.min.js
 node_modules/base64-js/index.js
 node_modules/base64-js/LICENSE
 node_modules/base64-js/package.json
 node_modules/base64-js/README.md
+<<<<<<< HEAD
+=======
 node_modules/base64-js/test/big-data.js
 node_modules/base64-js/test/convert.js
 node_modules/base64-js/test/corrupt.js
 node_modules/base64-js/test/url-safe.js
+>>>>>>> DiscordBot/master
 node_modules/bignumber.js/bignumber.d.ts
 node_modules/bignumber.js/bignumber.js
 node_modules/bignumber.js/bignumber.js.map
@@ -215,6 +258,7 @@ node_modules/bufferutil/index.js
 node_modules/bufferutil/LICENSE
 node_modules/bufferutil/package.json
 node_modules/bufferutil/README.md
+<<<<<<< HEAD
 node_modules/bufferutil/node_modules/node-gyp-build/bin.js
 node_modules/bufferutil/node_modules/node-gyp-build/build-test.js
 node_modules/bufferutil/node_modules/node-gyp-build/index.js
@@ -222,6 +266,8 @@ node_modules/bufferutil/node_modules/node-gyp-build/LICENSE
 node_modules/bufferutil/node_modules/node-gyp-build/optional.js
 node_modules/bufferutil/node_modules/node-gyp-build/package.json
 node_modules/bufferutil/node_modules/node-gyp-build/README.md
+=======
+>>>>>>> DiscordBot/master
 node_modules/bufferutil/prebuilds/darwin-x64/electron-napi.node
 node_modules/bufferutil/prebuilds/darwin-x64/node-napi.node
 node_modules/bufferutil/prebuilds/linux-x64/electron-napi.node
@@ -305,6 +351,7 @@ node_modules/core-util-is/package.json
 node_modules/core-util-is/README.md
 node_modules/core-util-is/test.js
 node_modules/core-util-is/lib/util.js
+<<<<<<< HEAD
 node_modules/d/.editorconfig
 node_modules/d/auto-bind.js
 node_modules/d/CHANGELOG.md
@@ -320,6 +367,11 @@ node_modules/d/test/index.js
 node_modules/d/test/lazy.js
 node_modules/debug/CHANGELOG.md
 node_modules/debug/LICENSE
+=======
+node_modules/debug/CHANGELOG.md
+node_modules/debug/LICENSE
+node_modules/debug/node.js
+>>>>>>> DiscordBot/master
 node_modules/debug/package.json
 node_modules/debug/README.md
 node_modules/debug/dist/debug.js
@@ -341,7 +393,10 @@ node_modules/discord-rpc/.eslintrc.js
 node_modules/discord-rpc/browser.js
 node_modules/discord-rpc/package.json
 node_modules/discord-rpc/README.md
+<<<<<<< HEAD
 node_modules/discord-rpc/node_modules/ws/browser.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/discord-rpc/node_modules/ws/index.js
 node_modules/discord-rpc/node_modules/ws/LICENSE
 node_modules/discord-rpc/node_modules/ws/package.json
@@ -353,6 +408,7 @@ node_modules/discord-rpc/node_modules/ws/lib/extension.js
 node_modules/discord-rpc/node_modules/ws/lib/permessage-deflate.js
 node_modules/discord-rpc/node_modules/ws/lib/receiver.js
 node_modules/discord-rpc/node_modules/ws/lib/sender.js
+<<<<<<< HEAD
 node_modules/discord-rpc/node_modules/ws/lib/stream.js
 node_modules/discord-rpc/node_modules/ws/lib/validation.js
 node_modules/discord-rpc/node_modules/ws/lib/websocket-server.js
@@ -364,6 +420,18 @@ node_modules/discord-rpc/src/util.js
 node_modules/discord-rpc/src/transports/index.js
 node_modules/discord-rpc/src/transports/ipc.js
 node_modules/discord-rpc/src/transports/websocket.js
+=======
+node_modules/discord-rpc/node_modules/ws/lib/validation.js
+node_modules/discord-rpc/node_modules/ws/lib/websocket-server.js
+node_modules/discord-rpc/node_modules/ws/lib/websocket.js
+node_modules/discord-rpc/src/Client.js
+node_modules/discord-rpc/src/Constants.js
+node_modules/discord-rpc/src/index.js
+node_modules/discord-rpc/src/Util.js
+node_modules/discord-rpc/src/transports/index.js
+node_modules/discord-rpc/src/transports/IPC.js
+node_modules/discord-rpc/src/transports/WebSocket.js
+>>>>>>> DiscordBot/master
 node_modules/discord.io/.npmignore
 node_modules/discord.io/example.js
 node_modules/discord.io/fillsquare.png
@@ -648,6 +716,7 @@ node_modules/env-variable/LICENSE
 node_modules/env-variable/package.json
 node_modules/env-variable/README.md
 node_modules/env-variable/test.js
+<<<<<<< HEAD
 node_modules/es5-ext/.editorconfig
 node_modules/es5-ext/CHANGELOG.md
 node_modules/es5-ext/CHANGES
@@ -1537,6 +1606,39 @@ node_modules/es6-symbol/test/is-native-implemented.js
 node_modules/es6-symbol/test/is-symbol.js
 node_modules/es6-symbol/test/polyfill.js
 node_modules/es6-symbol/test/validate-symbol.js
+=======
+node_modules/es6-promise/auto.js
+node_modules/es6-promise/CHANGELOG.md
+node_modules/es6-promise/es6-promise.d.ts
+node_modules/es6-promise/LICENSE
+node_modules/es6-promise/package.json
+node_modules/es6-promise/README.md
+node_modules/es6-promise/dist/es6-promise.auto.js
+node_modules/es6-promise/dist/es6-promise.auto.map
+node_modules/es6-promise/dist/es6-promise.auto.min.js
+node_modules/es6-promise/dist/es6-promise.auto.min.map
+node_modules/es6-promise/dist/es6-promise.js
+node_modules/es6-promise/dist/es6-promise.map
+node_modules/es6-promise/dist/es6-promise.min.js
+node_modules/es6-promise/dist/es6-promise.min.map
+node_modules/es6-promise/lib/es6-promise.auto.js
+node_modules/es6-promise/lib/es6-promise.js
+node_modules/es6-promise/lib/es6-promise/-internal.js
+node_modules/es6-promise/lib/es6-promise/asap.js
+node_modules/es6-promise/lib/es6-promise/enumerator.js
+node_modules/es6-promise/lib/es6-promise/polyfill.js
+node_modules/es6-promise/lib/es6-promise/promise.js
+node_modules/es6-promise/lib/es6-promise/then.js
+node_modules/es6-promise/lib/es6-promise/utils.js
+node_modules/es6-promise/lib/es6-promise/promise/all.js
+node_modules/es6-promise/lib/es6-promise/promise/race.js
+node_modules/es6-promise/lib/es6-promise/promise/reject.js
+node_modules/es6-promise/lib/es6-promise/promise/resolve.js
+node_modules/es6-promisify/package.json
+node_modules/es6-promisify/README.md
+node_modules/es6-promisify/dist/promise.js
+node_modules/es6-promisify/dist/promisify.js
+>>>>>>> DiscordBot/master
 node_modules/event-target-shim/index.d.ts
 node_modules/event-target-shim/LICENSE
 node_modules/event-target-shim/package.json
@@ -1547,6 +1649,7 @@ node_modules/event-target-shim/dist/event-target-shim.mjs
 node_modules/event-target-shim/dist/event-target-shim.mjs.map
 node_modules/event-target-shim/dist/event-target-shim.umd.js
 node_modules/event-target-shim/dist/event-target-shim.umd.js.map
+<<<<<<< HEAD
 node_modules/ext/.editorconfig
 node_modules/ext/CHANGELOG.md
 node_modules/ext/LICENSE
@@ -1698,6 +1801,8 @@ node_modules/ext/test/string_/includes/index.js
 node_modules/ext/test/string_/includes/is-implemented.js
 node_modules/ext/test/thenable_/finally.js
 node_modules/ext/thenable_/finally.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/extend/.editorconfig
 node_modules/extend/.eslintrc
 node_modules/extend/.jscs.json
@@ -1733,7 +1838,10 @@ node_modules/fecha/fecha.min.js
 node_modules/fecha/LICENSE
 node_modules/fecha/package.json
 node_modules/fecha/README.md
+<<<<<<< HEAD
 node_modules/gaxios/CHANGELOG.md
+=======
+>>>>>>> DiscordBot/master
 node_modules/gaxios/LICENSE
 node_modules/gaxios/package.json
 node_modules/gaxios/README.md
@@ -1746,6 +1854,7 @@ node_modules/gaxios/build/src/gaxios.js.map
 node_modules/gaxios/build/src/index.d.ts
 node_modules/gaxios/build/src/index.js
 node_modules/gaxios/build/src/index.js.map
+<<<<<<< HEAD
 node_modules/gaxios/build/src/retry.d.ts
 node_modules/gaxios/build/src/retry.js
 node_modules/gaxios/build/src/retry.js.map
@@ -1757,6 +1866,14 @@ node_modules/gaxios/node_modules/is-stream/index.js
 node_modules/gaxios/node_modules/is-stream/license
 node_modules/gaxios/node_modules/is-stream/package.json
 node_modules/gaxios/node_modules/is-stream/readme.md
+=======
+node_modules/gaxios/build/src/isbrowser.d.ts
+node_modules/gaxios/build/src/isbrowser.js
+node_modules/gaxios/build/src/isbrowser.js.map
+node_modules/gaxios/build/src/retry.d.ts
+node_modules/gaxios/build/src/retry.js
+node_modules/gaxios/build/src/retry.js.map
+>>>>>>> DiscordBot/master
 node_modules/gcp-metadata/CHANGELOG.md
 node_modules/gcp-metadata/LICENSE
 node_modules/gcp-metadata/package.json
@@ -1770,6 +1887,11 @@ node_modules/google-auth-library/package.json
 node_modules/google-auth-library/README.md
 node_modules/google-auth-library/build/src/index.d.ts
 node_modules/google-auth-library/build/src/index.js
+<<<<<<< HEAD
+=======
+node_modules/google-auth-library/build/src/isbrowser.d.ts
+node_modules/google-auth-library/build/src/isbrowser.js
+>>>>>>> DiscordBot/master
 node_modules/google-auth-library/build/src/messages.d.ts
 node_modules/google-auth-library/build/src/messages.js
 node_modules/google-auth-library/build/src/options.d.ts
@@ -1788,8 +1910,11 @@ node_modules/google-auth-library/build/src/auth/googleauth.d.ts
 node_modules/google-auth-library/build/src/auth/googleauth.js
 node_modules/google-auth-library/build/src/auth/iam.d.ts
 node_modules/google-auth-library/build/src/auth/iam.js
+<<<<<<< HEAD
 node_modules/google-auth-library/build/src/auth/idtokenclient.d.ts
 node_modules/google-auth-library/build/src/auth/idtokenclient.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/google-auth-library/build/src/auth/jwtaccess.d.ts
 node_modules/google-auth-library/build/src/auth/jwtaccess.js
 node_modules/google-auth-library/build/src/auth/jwtclient.d.ts
@@ -1832,10 +1957,13 @@ node_modules/googleapis/build/src/apis/acceleratedmobilepageurl/index.d.ts
 node_modules/googleapis/build/src/apis/acceleratedmobilepageurl/index.js
 node_modules/googleapis/build/src/apis/acceleratedmobilepageurl/v1.d.ts
 node_modules/googleapis/build/src/apis/acceleratedmobilepageurl/v1.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/accessapproval/index.d.ts
 node_modules/googleapis/build/src/apis/accessapproval/index.js
 node_modules/googleapis/build/src/apis/accessapproval/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/accessapproval/v1beta1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/accesscontextmanager/index.d.ts
 node_modules/googleapis/build/src/apis/accesscontextmanager/index.js
 node_modules/googleapis/build/src/apis/accesscontextmanager/v1.d.ts
@@ -1922,18 +2050,29 @@ node_modules/googleapis/build/src/apis/appsactivity/index.d.ts
 node_modules/googleapis/build/src/apis/appsactivity/index.js
 node_modules/googleapis/build/src/apis/appsactivity/v1.d.ts
 node_modules/googleapis/build/src/apis/appsactivity/v1.js
+<<<<<<< HEAD
+=======
+node_modules/googleapis/build/src/apis/appstate/index.d.ts
+node_modules/googleapis/build/src/apis/appstate/index.js
+node_modules/googleapis/build/src/apis/appstate/v1.d.ts
+node_modules/googleapis/build/src/apis/appstate/v1.js
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/bigquery/index.d.ts
 node_modules/googleapis/build/src/apis/bigquery/index.js
 node_modules/googleapis/build/src/apis/bigquery/v2.d.ts
 node_modules/googleapis/build/src/apis/bigquery/v2.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/bigqueryconnection/index.d.ts
 node_modules/googleapis/build/src/apis/bigqueryconnection/index.js
 node_modules/googleapis/build/src/apis/bigqueryconnection/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/bigqueryconnection/v1beta1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/bigquerydatatransfer/index.d.ts
 node_modules/googleapis/build/src/apis/bigquerydatatransfer/index.js
 node_modules/googleapis/build/src/apis/bigquerydatatransfer/v1.d.ts
 node_modules/googleapis/build/src/apis/bigquerydatatransfer/v1.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/bigqueryreservation/index.d.ts
 node_modules/googleapis/build/src/apis/bigqueryreservation/index.js
 node_modules/googleapis/build/src/apis/bigqueryreservation/v1.d.ts
@@ -1942,12 +2081,15 @@ node_modules/googleapis/build/src/apis/bigqueryreservation/v1alpha2.d.ts
 node_modules/googleapis/build/src/apis/bigqueryreservation/v1alpha2.js
 node_modules/googleapis/build/src/apis/bigqueryreservation/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/bigqueryreservation/v1beta1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/bigtableadmin/index.d.ts
 node_modules/googleapis/build/src/apis/bigtableadmin/index.js
 node_modules/googleapis/build/src/apis/bigtableadmin/v1.d.ts
 node_modules/googleapis/build/src/apis/bigtableadmin/v1.js
 node_modules/googleapis/build/src/apis/bigtableadmin/v2.d.ts
 node_modules/googleapis/build/src/apis/bigtableadmin/v2.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/billingbudgets/index.d.ts
 node_modules/googleapis/build/src/apis/billingbudgets/index.js
 node_modules/googleapis/build/src/apis/billingbudgets/v1beta1.d.ts
@@ -1956,6 +2098,10 @@ node_modules/googleapis/build/src/apis/binaryauthorization/index.d.ts
 node_modules/googleapis/build/src/apis/binaryauthorization/index.js
 node_modules/googleapis/build/src/apis/binaryauthorization/v1.d.ts
 node_modules/googleapis/build/src/apis/binaryauthorization/v1.js
+=======
+node_modules/googleapis/build/src/apis/binaryauthorization/index.d.ts
+node_modules/googleapis/build/src/apis/binaryauthorization/index.js
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/binaryauthorization/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/binaryauthorization/v1beta1.js
 node_modules/googleapis/build/src/apis/blogger/index.d.ts
@@ -2052,8 +2198,11 @@ node_modules/googleapis/build/src/apis/cloudresourcemanager/v2beta1.d.ts
 node_modules/googleapis/build/src/apis/cloudresourcemanager/v2beta1.js
 node_modules/googleapis/build/src/apis/cloudscheduler/index.d.ts
 node_modules/googleapis/build/src/apis/cloudscheduler/index.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/cloudscheduler/v1.d.ts
 node_modules/googleapis/build/src/apis/cloudscheduler/v1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/cloudscheduler/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/cloudscheduler/v1beta1.js
 node_modules/googleapis/build/src/apis/cloudsearch/index.d.ts
@@ -2080,10 +2229,13 @@ node_modules/googleapis/build/src/apis/cloudtrace/v1.d.ts
 node_modules/googleapis/build/src/apis/cloudtrace/v1.js
 node_modules/googleapis/build/src/apis/cloudtrace/v2.d.ts
 node_modules/googleapis/build/src/apis/cloudtrace/v2.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/commentanalyzer/index.d.ts
 node_modules/googleapis/build/src/apis/commentanalyzer/index.js
 node_modules/googleapis/build/src/apis/commentanalyzer/v1alpha1.d.ts
 node_modules/googleapis/build/src/apis/commentanalyzer/v1alpha1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/composer/index.d.ts
 node_modules/googleapis/build/src/apis/composer/index.js
 node_modules/googleapis/build/src/apis/composer/v1.d.ts
@@ -2120,18 +2272,24 @@ node_modules/googleapis/build/src/apis/customsearch/index.d.ts
 node_modules/googleapis/build/src/apis/customsearch/index.js
 node_modules/googleapis/build/src/apis/customsearch/v1.d.ts
 node_modules/googleapis/build/src/apis/customsearch/v1.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/datacatalog/index.d.ts
 node_modules/googleapis/build/src/apis/datacatalog/index.js
 node_modules/googleapis/build/src/apis/datacatalog/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/datacatalog/v1beta1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/dataflow/index.d.ts
 node_modules/googleapis/build/src/apis/dataflow/index.js
 node_modules/googleapis/build/src/apis/dataflow/v1b3.d.ts
 node_modules/googleapis/build/src/apis/dataflow/v1b3.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/datafusion/index.d.ts
 node_modules/googleapis/build/src/apis/datafusion/index.js
 node_modules/googleapis/build/src/apis/datafusion/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/datafusion/v1beta1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/dataproc/index.d.ts
 node_modules/googleapis/build/src/apis/dataproc/index.js
 node_modules/googleapis/build/src/apis/dataproc/v1.d.ts
@@ -2156,10 +2314,19 @@ node_modules/googleapis/build/src/apis/deploymentmanager/v2beta.d.ts
 node_modules/googleapis/build/src/apis/deploymentmanager/v2beta.js
 node_modules/googleapis/build/src/apis/dfareporting/index.d.ts
 node_modules/googleapis/build/src/apis/dfareporting/index.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/dfareporting/v3.3.d.ts
 node_modules/googleapis/build/src/apis/dfareporting/v3.3.js
 node_modules/googleapis/build/src/apis/dfareporting/v3.4.d.ts
 node_modules/googleapis/build/src/apis/dfareporting/v3.4.js
+=======
+node_modules/googleapis/build/src/apis/dfareporting/v3.1.d.ts
+node_modules/googleapis/build/src/apis/dfareporting/v3.1.js
+node_modules/googleapis/build/src/apis/dfareporting/v3.2.d.ts
+node_modules/googleapis/build/src/apis/dfareporting/v3.2.js
+node_modules/googleapis/build/src/apis/dfareporting/v3.3.d.ts
+node_modules/googleapis/build/src/apis/dfareporting/v3.3.js
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/dialogflow/index.d.ts
 node_modules/googleapis/build/src/apis/dialogflow/index.js
 node_modules/googleapis/build/src/apis/dialogflow/v2.d.ts
@@ -2190,6 +2357,7 @@ node_modules/googleapis/build/src/apis/docs/index.d.ts
 node_modules/googleapis/build/src/apis/docs/index.js
 node_modules/googleapis/build/src/apis/docs/v1.d.ts
 node_modules/googleapis/build/src/apis/docs/v1.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/domainsrdap/index.d.ts
 node_modules/googleapis/build/src/apis/domainsrdap/index.js
 node_modules/googleapis/build/src/apis/domainsrdap/v1.d.ts
@@ -2198,6 +2366,10 @@ node_modules/googleapis/build/src/apis/doubleclickbidmanager/index.d.ts
 node_modules/googleapis/build/src/apis/doubleclickbidmanager/index.js
 node_modules/googleapis/build/src/apis/doubleclickbidmanager/v1.1.d.ts
 node_modules/googleapis/build/src/apis/doubleclickbidmanager/v1.1.js
+=======
+node_modules/googleapis/build/src/apis/doubleclickbidmanager/index.d.ts
+node_modules/googleapis/build/src/apis/doubleclickbidmanager/index.js
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/doubleclickbidmanager/v1.d.ts
 node_modules/googleapis/build/src/apis/doubleclickbidmanager/v1.js
 node_modules/googleapis/build/src/apis/doubleclicksearch/index.d.ts
@@ -2218,20 +2390,26 @@ node_modules/googleapis/build/src/apis/factchecktools/index.d.ts
 node_modules/googleapis/build/src/apis/factchecktools/index.js
 node_modules/googleapis/build/src/apis/factchecktools/v1alpha1.d.ts
 node_modules/googleapis/build/src/apis/factchecktools/v1alpha1.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/fcm/index.d.ts
 node_modules/googleapis/build/src/apis/fcm/index.js
 node_modules/googleapis/build/src/apis/fcm/v1.d.ts
 node_modules/googleapis/build/src/apis/fcm/v1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/file/index.d.ts
 node_modules/googleapis/build/src/apis/file/index.js
 node_modules/googleapis/build/src/apis/file/v1.d.ts
 node_modules/googleapis/build/src/apis/file/v1.js
 node_modules/googleapis/build/src/apis/file/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/file/v1beta1.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/firebase/index.d.ts
 node_modules/googleapis/build/src/apis/firebase/index.js
 node_modules/googleapis/build/src/apis/firebase/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/firebase/v1beta1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/firebasedynamiclinks/index.d.ts
 node_modules/googleapis/build/src/apis/firebasedynamiclinks/index.js
 node_modules/googleapis/build/src/apis/firebasedynamiclinks/v1.d.ts
@@ -2256,6 +2434,15 @@ node_modules/googleapis/build/src/apis/fitness/index.d.ts
 node_modules/googleapis/build/src/apis/fitness/index.js
 node_modules/googleapis/build/src/apis/fitness/v1.d.ts
 node_modules/googleapis/build/src/apis/fitness/v1.js
+<<<<<<< HEAD
+=======
+node_modules/googleapis/build/src/apis/fusiontables/index.d.ts
+node_modules/googleapis/build/src/apis/fusiontables/index.js
+node_modules/googleapis/build/src/apis/fusiontables/v1.d.ts
+node_modules/googleapis/build/src/apis/fusiontables/v1.js
+node_modules/googleapis/build/src/apis/fusiontables/v2.d.ts
+node_modules/googleapis/build/src/apis/fusiontables/v2.js
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/games/index.d.ts
 node_modules/googleapis/build/src/apis/games/index.js
 node_modules/googleapis/build/src/apis/games/v1.d.ts
@@ -2290,12 +2477,21 @@ node_modules/googleapis/build/src/apis/groupssettings/v1.d.ts
 node_modules/googleapis/build/src/apis/groupssettings/v1.js
 node_modules/googleapis/build/src/apis/healthcare/index.d.ts
 node_modules/googleapis/build/src/apis/healthcare/index.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/healthcare/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/healthcare/v1beta1.js
 node_modules/googleapis/build/src/apis/homegraph/index.d.ts
 node_modules/googleapis/build/src/apis/homegraph/index.js
 node_modules/googleapis/build/src/apis/homegraph/v1.d.ts
 node_modules/googleapis/build/src/apis/homegraph/v1.js
+=======
+node_modules/googleapis/build/src/apis/healthcare/v1alpha.d.ts
+node_modules/googleapis/build/src/apis/healthcare/v1alpha.js
+node_modules/googleapis/build/src/apis/healthcare/v1alpha2.d.ts
+node_modules/googleapis/build/src/apis/healthcare/v1alpha2.js
+node_modules/googleapis/build/src/apis/healthcare/v1beta1.d.ts
+node_modules/googleapis/build/src/apis/healthcare/v1beta1.js
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/iam/index.d.ts
 node_modules/googleapis/build/src/apis/iam/index.js
 node_modules/googleapis/build/src/apis/iam/v1.d.ts
@@ -2346,14 +2542,22 @@ node_modules/googleapis/build/src/apis/licensing/index.d.ts
 node_modules/googleapis/build/src/apis/licensing/index.js
 node_modules/googleapis/build/src/apis/licensing/v1.d.ts
 node_modules/googleapis/build/src/apis/licensing/v1.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/lifesciences/index.d.ts
 node_modules/googleapis/build/src/apis/lifesciences/index.js
 node_modules/googleapis/build/src/apis/lifesciences/v2beta.d.ts
 node_modules/googleapis/build/src/apis/lifesciences/v2beta.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/logging/index.d.ts
 node_modules/googleapis/build/src/apis/logging/index.js
 node_modules/googleapis/build/src/apis/logging/v2.d.ts
 node_modules/googleapis/build/src/apis/logging/v2.js
+<<<<<<< HEAD
+=======
+node_modules/googleapis/build/src/apis/logging/v2beta1.d.ts
+node_modules/googleapis/build/src/apis/logging/v2beta1.js
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/manufacturers/index.d.ts
 node_modules/googleapis/build/src/apis/manufacturers/index.js
 node_modules/googleapis/build/src/apis/manufacturers/v1.d.ts
@@ -2368,8 +2572,11 @@ node_modules/googleapis/build/src/apis/ml/v1.d.ts
 node_modules/googleapis/build/src/apis/ml/v1.js
 node_modules/googleapis/build/src/apis/monitoring/index.d.ts
 node_modules/googleapis/build/src/apis/monitoring/index.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/monitoring/v1.d.ts
 node_modules/googleapis/build/src/apis/monitoring/v1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/monitoring/v3.d.ts
 node_modules/googleapis/build/src/apis/monitoring/v3.js
 node_modules/googleapis/build/src/apis/oauth2/index.d.ts
@@ -2412,20 +2619,26 @@ node_modules/googleapis/build/src/apis/plusDomains/index.d.ts
 node_modules/googleapis/build/src/apis/plusDomains/index.js
 node_modules/googleapis/build/src/apis/plusDomains/v1.d.ts
 node_modules/googleapis/build/src/apis/plusDomains/v1.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/policytroubleshooter/index.d.ts
 node_modules/googleapis/build/src/apis/policytroubleshooter/index.js
 node_modules/googleapis/build/src/apis/policytroubleshooter/v1.d.ts
 node_modules/googleapis/build/src/apis/policytroubleshooter/v1.js
 node_modules/googleapis/build/src/apis/policytroubleshooter/v1beta.d.ts
 node_modules/googleapis/build/src/apis/policytroubleshooter/v1beta.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/poly/index.d.ts
 node_modules/googleapis/build/src/apis/poly/index.js
 node_modules/googleapis/build/src/apis/poly/v1.d.ts
 node_modules/googleapis/build/src/apis/poly/v1.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/prod_tt_sasportal/index.d.ts
 node_modules/googleapis/build/src/apis/prod_tt_sasportal/index.js
 node_modules/googleapis/build/src/apis/prod_tt_sasportal/v1alpha1.d.ts
 node_modules/googleapis/build/src/apis/prod_tt_sasportal/v1alpha1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/proximitybeacon/index.d.ts
 node_modules/googleapis/build/src/apis/proximitybeacon/index.js
 node_modules/googleapis/build/src/apis/proximitybeacon/v1beta1.d.ts
@@ -2438,10 +2651,13 @@ node_modules/googleapis/build/src/apis/pubsub/v1beta1a.d.ts
 node_modules/googleapis/build/src/apis/pubsub/v1beta1a.js
 node_modules/googleapis/build/src/apis/pubsub/v1beta2.d.ts
 node_modules/googleapis/build/src/apis/pubsub/v1beta2.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/recommender/index.d.ts
 node_modules/googleapis/build/src/apis/recommender/index.js
 node_modules/googleapis/build/src/apis/recommender/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/recommender/v1beta1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/redis/index.d.ts
 node_modules/googleapis/build/src/apis/redis/index.js
 node_modules/googleapis/build/src/apis/redis/v1.d.ts
@@ -2470,8 +2686,11 @@ node_modules/googleapis/build/src/apis/run/v1.d.ts
 node_modules/googleapis/build/src/apis/run/v1.js
 node_modules/googleapis/build/src/apis/run/v1alpha1.d.ts
 node_modules/googleapis/build/src/apis/run/v1alpha1.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/run/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/run/v1beta1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/runtimeconfig/index.d.ts
 node_modules/googleapis/build/src/apis/runtimeconfig/index.js
 node_modules/googleapis/build/src/apis/runtimeconfig/v1.d.ts
@@ -2482,28 +2701,41 @@ node_modules/googleapis/build/src/apis/safebrowsing/index.d.ts
 node_modules/googleapis/build/src/apis/safebrowsing/index.js
 node_modules/googleapis/build/src/apis/safebrowsing/v4.d.ts
 node_modules/googleapis/build/src/apis/safebrowsing/v4.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/sasportal/index.d.ts
 node_modules/googleapis/build/src/apis/sasportal/index.js
 node_modules/googleapis/build/src/apis/sasportal/v1alpha1.d.ts
 node_modules/googleapis/build/src/apis/sasportal/v1alpha1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/script/index.d.ts
 node_modules/googleapis/build/src/apis/script/index.js
 node_modules/googleapis/build/src/apis/script/v1.d.ts
 node_modules/googleapis/build/src/apis/script/v1.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/secretmanager/index.d.ts
 node_modules/googleapis/build/src/apis/secretmanager/index.js
 node_modules/googleapis/build/src/apis/secretmanager/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/secretmanager/v1beta1.js
+=======
+node_modules/googleapis/build/src/apis/searchconsole/index.d.ts
+node_modules/googleapis/build/src/apis/searchconsole/index.js
+node_modules/googleapis/build/src/apis/searchconsole/v1.d.ts
+node_modules/googleapis/build/src/apis/searchconsole/v1.js
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/securitycenter/index.d.ts
 node_modules/googleapis/build/src/apis/securitycenter/index.js
 node_modules/googleapis/build/src/apis/securitycenter/v1.d.ts
 node_modules/googleapis/build/src/apis/securitycenter/v1.js
 node_modules/googleapis/build/src/apis/securitycenter/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/securitycenter/v1beta1.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/securitycenter/v1p1alpha1.d.ts
 node_modules/googleapis/build/src/apis/securitycenter/v1p1alpha1.js
 node_modules/googleapis/build/src/apis/securitycenter/v1p1beta1.d.ts
 node_modules/googleapis/build/src/apis/securitycenter/v1p1beta1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/servicebroker/index.d.ts
 node_modules/googleapis/build/src/apis/servicebroker/index.js
 node_modules/googleapis/build/src/apis/servicebroker/v1.d.ts
@@ -2562,16 +2794,28 @@ node_modules/googleapis/build/src/apis/speech/v1.d.ts
 node_modules/googleapis/build/src/apis/speech/v1.js
 node_modules/googleapis/build/src/apis/speech/v1p1beta1.d.ts
 node_modules/googleapis/build/src/apis/speech/v1p1beta1.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/speech/v2beta1.d.ts
 node_modules/googleapis/build/src/apis/speech/v2beta1.js
 node_modules/googleapis/build/src/apis/sql/index.d.ts
 node_modules/googleapis/build/src/apis/sql/index.js
 node_modules/googleapis/build/src/apis/sql/v1beta4.d.ts
 node_modules/googleapis/build/src/apis/sql/v1beta4.js
+=======
+node_modules/googleapis/build/src/apis/sqladmin/index.d.ts
+node_modules/googleapis/build/src/apis/sqladmin/index.js
+node_modules/googleapis/build/src/apis/sqladmin/v1beta4.d.ts
+node_modules/googleapis/build/src/apis/sqladmin/v1beta4.js
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/storage/index.d.ts
 node_modules/googleapis/build/src/apis/storage/index.js
 node_modules/googleapis/build/src/apis/storage/v1.d.ts
 node_modules/googleapis/build/src/apis/storage/v1.js
+<<<<<<< HEAD
+=======
+node_modules/googleapis/build/src/apis/storage/v1beta1.d.ts
+node_modules/googleapis/build/src/apis/storage/v1beta1.js
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/storage/v1beta2.d.ts
 node_modules/googleapis/build/src/apis/storage/v1beta2.js
 node_modules/googleapis/build/src/apis/storagetransfer/index.d.ts
@@ -2582,6 +2826,13 @@ node_modules/googleapis/build/src/apis/streetviewpublish/index.d.ts
 node_modules/googleapis/build/src/apis/streetviewpublish/index.js
 node_modules/googleapis/build/src/apis/streetviewpublish/v1.d.ts
 node_modules/googleapis/build/src/apis/streetviewpublish/v1.js
+<<<<<<< HEAD
+=======
+node_modules/googleapis/build/src/apis/surveys/index.d.ts
+node_modules/googleapis/build/src/apis/surveys/index.js
+node_modules/googleapis/build/src/apis/surveys/v2.d.ts
+node_modules/googleapis/build/src/apis/surveys/v2.js
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/tagmanager/index.d.ts
 node_modules/googleapis/build/src/apis/tagmanager/index.js
 node_modules/googleapis/build/src/apis/tagmanager/v1.d.ts
@@ -2604,8 +2855,11 @@ node_modules/googleapis/build/src/apis/texttospeech/v1beta1.d.ts
 node_modules/googleapis/build/src/apis/texttospeech/v1beta1.js
 node_modules/googleapis/build/src/apis/toolresults/index.d.ts
 node_modules/googleapis/build/src/apis/toolresults/index.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/toolresults/v1.d.ts
 node_modules/googleapis/build/src/apis/toolresults/v1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/toolresults/v1beta3.d.ts
 node_modules/googleapis/build/src/apis/toolresults/v1beta3.js
 node_modules/googleapis/build/src/apis/tpu/index.d.ts
@@ -2618,16 +2872,26 @@ node_modules/googleapis/build/src/apis/translate/index.d.ts
 node_modules/googleapis/build/src/apis/translate/index.js
 node_modules/googleapis/build/src/apis/translate/v2.d.ts
 node_modules/googleapis/build/src/apis/translate/v2.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/translate/v3beta1.d.ts
 node_modules/googleapis/build/src/apis/translate/v3beta1.js
+=======
+node_modules/googleapis/build/src/apis/urlshortener/index.d.ts
+node_modules/googleapis/build/src/apis/urlshortener/index.js
+node_modules/googleapis/build/src/apis/urlshortener/v1.d.ts
+node_modules/googleapis/build/src/apis/urlshortener/v1.js
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/vault/index.d.ts
 node_modules/googleapis/build/src/apis/vault/index.js
 node_modules/googleapis/build/src/apis/vault/v1.d.ts
 node_modules/googleapis/build/src/apis/vault/v1.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/verifiedaccess/index.d.ts
 node_modules/googleapis/build/src/apis/verifiedaccess/index.js
 node_modules/googleapis/build/src/apis/verifiedaccess/v1.d.ts
 node_modules/googleapis/build/src/apis/verifiedaccess/v1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/videointelligence/index.d.ts
 node_modules/googleapis/build/src/apis/videointelligence/index.js
 node_modules/googleapis/build/src/apis/videointelligence/v1.d.ts
@@ -2658,8 +2922,11 @@ node_modules/googleapis/build/src/apis/webmasters/v3.d.ts
 node_modules/googleapis/build/src/apis/webmasters/v3.js
 node_modules/googleapis/build/src/apis/websecurityscanner/index.d.ts
 node_modules/googleapis/build/src/apis/websecurityscanner/index.js
+<<<<<<< HEAD
 node_modules/googleapis/build/src/apis/websecurityscanner/v1.d.ts
 node_modules/googleapis/build/src/apis/websecurityscanner/v1.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/websecurityscanner/v1alpha.d.ts
 node_modules/googleapis/build/src/apis/websecurityscanner/v1alpha.js
 node_modules/googleapis/build/src/apis/websecurityscanner/v1beta.d.ts
@@ -2672,6 +2939,11 @@ node_modules/googleapis/build/src/apis/youtubeAnalytics/index.d.ts
 node_modules/googleapis/build/src/apis/youtubeAnalytics/index.js
 node_modules/googleapis/build/src/apis/youtubeAnalytics/v1.d.ts
 node_modules/googleapis/build/src/apis/youtubeAnalytics/v1.js
+<<<<<<< HEAD
+=======
+node_modules/googleapis/build/src/apis/youtubeAnalytics/v1beta1.d.ts
+node_modules/googleapis/build/src/apis/youtubeAnalytics/v1beta1.js
+>>>>>>> DiscordBot/master
 node_modules/googleapis/build/src/apis/youtubeAnalytics/v2.d.ts
 node_modules/googleapis/build/src/apis/youtubeAnalytics/v2.js
 node_modules/googleapis/build/src/apis/youtubereporting/index.d.ts
@@ -2722,6 +2994,7 @@ node_modules/help/test/test.js
 node_modules/help/test/fixtures/default/index.js
 node_modules/help/test/fixtures/default/usage.txt
 node_modules/help/test/fixtures/default/usage2.txt
+<<<<<<< HEAD
 node_modules/https-proxy-agent/.editorconfig
 node_modules/https-proxy-agent/.eslintrc.js
 node_modules/https-proxy-agent/index.d.ts
@@ -2729,6 +3002,16 @@ node_modules/https-proxy-agent/index.js
 node_modules/https-proxy-agent/package.json
 node_modules/https-proxy-agent/README.md
 node_modules/https-proxy-agent/.github/workflows/test.yml
+=======
+node_modules/https-proxy-agent/.travis.yml
+node_modules/https-proxy-agent/History.md
+node_modules/https-proxy-agent/index.js
+node_modules/https-proxy-agent/package.json
+node_modules/https-proxy-agent/README.md
+node_modules/https-proxy-agent/test/ssl-cert-snakeoil.key
+node_modules/https-proxy-agent/test/ssl-cert-snakeoil.pem
+node_modules/https-proxy-agent/test/test.js
+>>>>>>> DiscordBot/master
 node_modules/inherits/inherits_browser.js
 node_modules/inherits/inherits.js
 node_modules/inherits/LICENSE
@@ -3973,6 +4256,7 @@ node_modules/nan/doc/v8_misc.md
 node_modules/nan/tools/1to2.js
 node_modules/nan/tools/package.json
 node_modules/nan/tools/README.md
+<<<<<<< HEAD
 node_modules/next-tick/.lint
 node_modules/next-tick/.npmignore
 node_modules/next-tick/.travis.yml
@@ -3982,6 +4266,8 @@ node_modules/next-tick/LICENSE
 node_modules/next-tick/package.json
 node_modules/next-tick/README.md
 node_modules/next-tick/test/index.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/node-fetch/browser.js
 node_modules/node-fetch/CHANGELOG.md
 node_modules/node-fetch/LICENSE.md
@@ -4005,7 +4291,10 @@ node_modules/node-forge/flash/README.md
 node_modules/node-forge/flash/swf/SocketPool.swf
 node_modules/node-forge/lib/aes.js
 node_modules/node-forge/lib/aesCipherSuites.js
+<<<<<<< HEAD
 node_modules/node-forge/lib/asn1-validator.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/node-forge/lib/asn1.js
 node_modules/node-forge/lib/baseN.js
 node_modules/node-forge/lib/cipher.js
@@ -4073,6 +4362,13 @@ node_modules/options/Makefile
 node_modules/options/package.json
 node_modules/options/README.md
 node_modules/options/lib/options.js
+<<<<<<< HEAD
+=======
+node_modules/pify/index.js
+node_modules/pify/license
+node_modules/pify/package.json
+node_modules/pify/readme.md
+>>>>>>> DiscordBot/master
 node_modules/prism-media/.eslintrc.json
 node_modules/prism-media/.travis.yml
 node_modules/prism-media/LICENSE
@@ -4096,10 +4392,16 @@ node_modules/qs/.editorconfig
 node_modules/qs/.eslintignore
 node_modules/qs/.eslintrc
 node_modules/qs/CHANGELOG.md
+<<<<<<< HEAD
 node_modules/qs/LICENSE.md
 node_modules/qs/package.json
 node_modules/qs/README.md
 node_modules/qs/.github/FUNDING.yml
+=======
+node_modules/qs/LICENSE
+node_modules/qs/package.json
+node_modules/qs/README.md
+>>>>>>> DiscordBot/master
 node_modules/qs/dist/qs.js
 node_modules/qs/lib/formats.js
 node_modules/qs/lib/index.js
@@ -4153,6 +4455,10 @@ node_modules/redis/lib/extendedApi.js
 node_modules/redis/lib/individualCommands.js
 node_modules/redis/lib/multi.js
 node_modules/redis/lib/utils.js
+<<<<<<< HEAD
+=======
+node_modules/redis-commands/.travis.yml
+>>>>>>> DiscordBot/master
 node_modules/redis-commands/changelog.md
 node_modules/redis-commands/commands.json
 node_modules/redis-commands/index.js
@@ -4176,6 +4482,16 @@ node_modules/safe-buffer/index.js
 node_modules/safe-buffer/LICENSE
 node_modules/safe-buffer/package.json
 node_modules/safe-buffer/README.md
+<<<<<<< HEAD
+=======
+node_modules/semver/CHANGELOG.md
+node_modules/semver/LICENSE
+node_modules/semver/package.json
+node_modules/semver/range.bnf
+node_modules/semver/README.md
+node_modules/semver/semver.js
+node_modules/semver/bin/semver
+>>>>>>> DiscordBot/master
 node_modules/simple-swizzle/index.js
 node_modules/simple-swizzle/LICENSE
 node_modules/simple-swizzle/package.json
@@ -4237,6 +4553,7 @@ node_modules/tweetnacl/nacl.min.js
 node_modules/tweetnacl/package.json
 node_modules/tweetnacl/PULL_REQUEST_TEMPLATE.md
 node_modules/tweetnacl/README.md
+<<<<<<< HEAD
 node_modules/type/.editorconfig
 node_modules/type/CHANGELOG.md
 node_modules/type/LICENSE
@@ -4338,6 +4655,8 @@ node_modules/type/time-value/coerce.js
 node_modules/type/time-value/ensure.js
 node_modules/type/value/ensure.js
 node_modules/type/value/is.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/typedarray-to-buffer/.airtap.yml
 node_modules/typedarray-to-buffer/.travis.yml
 node_modules/typedarray-to-buffer/index.js
@@ -4345,6 +4664,7 @@ node_modules/typedarray-to-buffer/LICENSE
 node_modules/typedarray-to-buffer/package.json
 node_modules/typedarray-to-buffer/README.md
 node_modules/typedarray-to-buffer/test/basic.js
+<<<<<<< HEAD
 node_modules/uWebSockets.js/index.d.ts
 node_modules/uWebSockets.js/package.json
 node_modules/uWebSockets.js/uws_darwin_x64_64.node
@@ -4364,6 +4684,8 @@ node_modules/uWebSockets.js/uws_win32_x64_67.node
 node_modules/uWebSockets.js/uws_win32_x64_72.node
 node_modules/uWebSockets.js/uws_win32_x64_79.node
 node_modules/uWebSockets.js/uws.js
+=======
+>>>>>>> DiscordBot/master
 node_modules/ultron/.npmignore
 node_modules/ultron/.travis.yml
 node_modules/ultron/index.js
@@ -4393,11 +4715,19 @@ node_modules/util-deprecate/LICENSE
 node_modules/util-deprecate/node.js
 node_modules/util-deprecate/package.json
 node_modules/util-deprecate/README.md
+<<<<<<< HEAD
+=======
+node_modules/uuid/.eslintrc.json
+>>>>>>> DiscordBot/master
 node_modules/uuid/AUTHORS
 node_modules/uuid/CHANGELOG.md
 node_modules/uuid/index.js
 node_modules/uuid/LICENSE.md
 node_modules/uuid/package.json
+<<<<<<< HEAD
+=======
+node_modules/uuid/README_js.md
+>>>>>>> DiscordBot/master
 node_modules/uuid/README.md
 node_modules/uuid/v1.js
 node_modules/uuid/v3.js
@@ -4412,8 +4742,16 @@ node_modules/uuid/lib/rng.js
 node_modules/uuid/lib/sha1-browser.js
 node_modules/uuid/lib/sha1.js
 node_modules/uuid/lib/v35.js
+<<<<<<< HEAD
 node_modules/websocket/.jshintrc
 node_modules/websocket/binding.gyp
+=======
+node_modules/uws/package.json
+node_modules/uws/README.md
+node_modules/websocket/.jshintrc
+node_modules/websocket/binding.gyp
+node_modules/websocket/builderror.log
+>>>>>>> DiscordBot/master
 node_modules/websocket/CHANGELOG.md
 node_modules/websocket/gulpfile.js
 node_modules/websocket/index.js
@@ -4605,3 +4943,8 @@ node_modules/yallist/LICENSE
 node_modules/yallist/package.json
 node_modules/yallist/README.md
 node_modules/yallist/yallist.js
+<<<<<<< HEAD
+=======
+discordbot-1.0.0.tgz
+example.txt
+>>>>>>> DiscordBot/master

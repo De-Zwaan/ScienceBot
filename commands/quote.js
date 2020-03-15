@@ -8,7 +8,7 @@ exports.run = (client, message, args) => {
     const readline = require('readline');
     const { google } = require('googleapis');
 
-    // If modifying these scopes, delete token.json.
+    // If modifying these scopes, delete config.json.
     const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 
     const TOKEN_PATH = 'config.json';
@@ -26,9 +26,9 @@ exports.run = (client, message, args) => {
             client_id, client_secret, redirect_uris[0]);
 
         // Check if we have previously stored a token.
-        fs.readFile(TOKEN_PATH, (err, token) => {
+        fs.readFile(TOKEN_PATH, (err, creds) => {
             if (err) return getNewToken(oAuth2Client, callback);
-            oAuth2Client.setCredentials(JSON.parse(token));
+            oAuth2Client.setCredentials(JSON.parse(creds).googleInfo);
             callback(oAuth2Client, args);
         });
     }
@@ -38,7 +38,7 @@ exports.run = (client, message, args) => {
             access_type: 'offline',
             scope: SCOPES,
         });
-        console.log(`${Date()}\tAuthorize this app by visiting this url: authUrl`);
+        console.log(`${Date()}\tAuthorize this app by visiting this url: ${authUrl}`);
         const rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
@@ -48,11 +48,23 @@ exports.run = (client, message, args) => {
             oAuth2Client.getToken(code, (err, token) => {
                 if (err) return console.error(`${Date()}\tError while trying to retrieve access token ${err}`);
                 oAuth2Client.setCredentials(token);
-                // Store the token to disk for later program executions
-                fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
-                    if (err) console.error(err);
-                    console.log(`${Date()}\tToken stored to: ${TOKEN_PATH}`);
-                });
+
+                // Get other credentials from the file before overwriting it 
+                fs.readFile(TOKEN_PATH, 'utf-8', function (err, oldCreds) {
+                    if (err) throw err;
+
+                    // Parse the creds
+                    let creds = JSON.parse(oldCreds)
+                    
+                    // Change the value of googleInfo to the new token
+                    creds.googleInfo = token;
+                    
+                    // Store the creds back to disk for later program executions
+                    fs.writeFile(TOKEN_PATH, JSON.stringify(creds), (err) => {
+                        if (err) console.error(err);
+                        console.log(`${Date()}\tToken stored to: ${TOKEN_PATH}`);
+                    });
+                })
                 callback(oAuth2Client, args);
             });
         });

@@ -4789,3 +4789,4 @@ node_modules/https-proxy-agent/test/test.js
 node_modules/qs/LICENSE
 node_modules/uuid/.eslintrc.json
 node_modules/uuid/README_js.md
+node_modules/.bin/wtfnode

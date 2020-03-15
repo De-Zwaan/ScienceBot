@@ -17,10 +17,9 @@ module.exports = (client) => {
   console.log(`Ready to serve in ${client.channels.size} channels on ${client.guilds.size} servers, for a total of ${client.users.size} users, as ${client.user.tag}!`);
 
   // Running RPC Client
-
   const rpc = client.RichPresence.get('rpc');
 
   if (!rpc) return;
 
-  //rpc.run(client);
+  // rpc.run(client);
 }

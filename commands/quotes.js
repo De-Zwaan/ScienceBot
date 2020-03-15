@@ -11,10 +11,10 @@ exports.run = (client, message, args) => {
     // If modifying these scopes, delete token.json.
     const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 
-    const TOKEN_PATH = 'token.json';
+    const TOKEN_PATH = 'config.json';
 
     // Load client secrets from a local file.
-    fs.readFile('credentials.json', (err, content) => {
+    fs.readFile('config.json', (err, content) => {
         if (err) return console.log('Error loading client secret file:', err);
         // Authorize a client with credentials, then call the Google Sheets API.
         authorize(JSON.parse(content), infoGetter);
@@ -113,7 +113,8 @@ exports.run = (client, message, args) => {
             quotes = data.find(tempUser => tempUser[1] == `${user.id}`)[3];
         } catch (error) {
             console.error(error);
-            message.channel.send(`> It seems like ${user.displayName} has not yet been quoted.`)
+            message.channel.send(`> It seems like ${user.displayName} has not yet been quoted.`);
+            return;
         }
         
 

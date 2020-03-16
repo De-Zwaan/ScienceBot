@@ -35,7 +35,8 @@ exports.run = (client, message, args) => {
     //}
     */
 
-    console.log(message.mentions.users.array().length);
+    console.log(client.user.id)
+    // console.log(message.mentions.users.array().length);
     
     message.delete();
 };

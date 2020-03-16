@@ -1,5 +1,4 @@
 module.exports = (client, message, box) => {
-
   // Ignore all bots
   if (message.author.bot) return;
 
@@ -8,8 +7,8 @@ module.exports = (client, message, box) => {
     const msg = client.messages.get("messageHandler");
     if (!msg) return;
     msg.run(client, message);
-  } else if (message.content.toLowerCase().indexOf(client.config.prefix) == 0) {
 
+  } else if (message.content.toLowerCase().indexOf(client.config.prefix) == 0) {
     // Our standard argument/command name definition.
     const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
@@ -24,8 +23,8 @@ module.exports = (client, message, box) => {
     cmd.run(client, message, args);
   }
 
-    const color = client.changeColor.get('CC');
-    if (!color) return;
+  const color = client.assets.get('changer');
+  if (!color) return;
 
-    color.run(client, box);
+  color.run(client, box);
 };

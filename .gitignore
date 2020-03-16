@@ -4791,5 +4791,4 @@ node_modules/uuid/.eslintrc.json
 node_modules/uuid/README_js.md
 node_modules/.bin/wtfnode
 config.json
-.gitsecret/keys/random_seed
-public-key.gpg
+

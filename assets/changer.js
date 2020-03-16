@@ -1,6 +1,6 @@
-module.exports = (client, box) => {
+exports.run = (client, box) => {
     const fs = require("fs");
-    const boxPath = `../box.json`
+    const boxPath = `./box.json`
 
     // Maps values to new values
     function map(value, low1, high1, low2, high2) {

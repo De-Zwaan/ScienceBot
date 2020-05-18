@@ -4,23 +4,27 @@
   "description": "A discord bot",
   "main": "app.js",
   "dependencies": {
-    "async": "^2.6.2",
+    "@discordjs/uws": "^10.149.0",
+    "async": "^2.6.3",
+    "better-sqlite-pool": "github:eslachance/better-sqlite-pool",
     "bufferutil": "^4.0.1",
-    "discord-rpc": "^3.0.1",
-    "discord.js": "^11.5.1",
-    "enmap": "^4.8.1",
+    "discord-rpc": "^3.1.1",
+    "discord.js": "^11.6.4",
+    "enmap": "^4.8.7",
     "googleapis": "^39.2.0",
     "help": "^3.0.2",
     "long": "^4.0.0",
-    "node-fetch": "^2.3.0",
+    "node-fetch": "^2.6.0",
+    "register-scheme": "github:devsnek/node-register-scheme",
     "snekfetch": "^4.0.4",
-    "websocket": "^1.0.28",
+    "websocket": "^1.0.31",
     "winston": "^3.2.1",
-    "ws": "^6.2.0"
+    "ws": "^6.2.1",
+    "wtfnode": "^0.8.1"
   },
   "devDependencies": {},
   "scripts": {
-    "bot": "node app.js"
+    "start": "node app.js"
   },
   "keywords": [
     "RPC",

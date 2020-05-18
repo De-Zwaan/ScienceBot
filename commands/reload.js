@@ -7,7 +7,7 @@ exports.run = (client, message, args) => {
   
   // Check if the command exists and is valid
   if(!client.commands.has(commandName)) {
-    return message.channel.send("That command does not exist");
+    return message.channel.send("> That command does not exist");
   }
   
   // the path is relative to the *current folder*, so just ./filename.js

@@ -55,10 +55,10 @@ exports.run = (client, message, args) => {
 
                     // Parse the creds
                     let creds = JSON.parse(oldCreds)
-
+                    
                     // Change the value of googleInfo to the new token
                     creds.googleInfo = token;
-
+                    
                     // Store the creds back to disk for later program executions
                     fs.writeFile(TOKEN_PATH, JSON.stringify(creds), (err) => {
                         if (err) console.error(err);
@@ -100,10 +100,8 @@ exports.run = (client, message, args) => {
 
             let result = getRandomQuote(data);
 
+            message.channel.send(`>>> *"${result[0]}"* \n\t\t\t-${result[1]} ${result[2]}`);
             console.log(`${Date()}\tRequested random quote: "${result[0]}"\t-${result[1]} ${result[2]}, for "${message.author.username}"`);
-
-            message.channel.send(`>>> *"${result[0]}"* \n\t\t\t-${result[1]} ${result[2]}`)
-                .then(async message => collectReactions(message, result[0]));
 
         } else {
             if (args[0] == 'random' || args[0].toLowerCase() == `r`) {
@@ -126,7 +124,9 @@ exports.run = (client, message, args) => {
                     args.push("random");
                 }
 
-                let keywords = args.slice(0, args.length - 1);
+                let end = args.length - 1;
+
+                let keywords = args.slice(0, end);
 
                 let found = searchQuotes(keywords, data);
 
@@ -146,10 +146,8 @@ exports.run = (client, message, args) => {
                         // If the user includes "random" on the end of the s!quote command or does not include a keyword
                         result = getRandomQuote(found);
 
+                        message.channel.send(`>>> *"${result[0]}"* \n\t\t\t-${result[1]} ${result[2]}`);
                         console.log(`${Date()}\tSearched the quotes database using "${keywords.join(`", "`)}", for "${message.author.username}".\n\tFound ${found.length} results. Returned: "${result[0]}" \t-${result[1]} ${result[2]}`);
-
-                        message.channel.send(`>>> *"${result[0]}"* \n\t\t\t-${result[1]} ${result[2]}`)
-                            .then(async message => collectReactions(message, result[0]));
                     }
                 }
             }
@@ -251,68 +249,6 @@ exports.run = (client, message, args) => {
         return quoterName;
     }
 
-    
-    async function reactToOwnMessage(message) {
-        // React to you own message
-        try {
-            await message.react('👍')
-            await message.react('👎')
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    
-    function collectReactions(message, quote) {
-        reactToOwnMessage(message);
-        
-        // Configuring the ReactionCollector
-        const reactionFilter = (reaction, user) => {
-            return ['👍', '👎'].includes(reaction.emoji.name) && user.id !== client.user.id;
-        };
-        
-        // Initialising the reactionCollector
-        const voteCollector = message.createReactionCollector(reactionFilter, { time: 10000 });
-        
-        
-        // After the time is over
-        voteCollector.on('end', collected => {
-            console.log(`Collected ${collected.size} items`);
-            // Create the variables
-            let up, down;
-            
-            if (collected.size <= 0) return;
-            
-            for (reactions of collected) {
-                reaction = reactions[0];
-                
-                
-                if (reaction == '👍') {
-                    console.log('👍')
-                    up++;
-                } else {
-                    console.log('👎')
-                    down++;
-                }
-            }
-            
-            calcScore(up, down, message);
-        });
-        
-    }
-    
-    function calcScore(up, down, message) {
-        scores = getScores(message);
-    }
-    
-    function getScores(quote) {
-        keywords = message.content.splice(6, )
-        searchQuotes()
-    }
-    
-    function writeToSpreadsheet(col, row, value) {
-        console.log(`Intended to write ${value} to ${row}:${col}`);
-    }
-
     message.delete();
-};
+}
 

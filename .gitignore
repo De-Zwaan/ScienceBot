@@ -1,5 +1,5 @@
-config.json
 node_modules/.bin/gp12-pem.cmd
+config.json
 node_modules/.bin/mime
 node_modules/.bin/mime.cmd
 node_modules/.bin/node-gyp-build-optional.cmd

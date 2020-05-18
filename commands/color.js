@@ -44,4 +44,6 @@ exports.run = (client, message, [r, g, b]) => {
         this.g = g;
         this.b = b;
     }
+
+    message.delete();
 };

@@ -130,7 +130,7 @@ exports.run = (client, message, args) => {
         }
         
 
-        // console.log(`quoted:\t${quoted}\nquotes:\t${quotes}`)
+        console.log(`${Date()}\tReturned the amount of quotes/quoted for ${user.displayName}.`);
         message.channel.send(`>>> **${user.displayName}**:\n\tQuoted:\t${quoted}\n\tQuotes:\t${quotes}`)
     }
 

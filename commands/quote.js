@@ -1,5 +1,6 @@
 exports.run = (client, message, args) => {
 
+    // If there are no useful arguments given set args to an empty array
     if (args == undefined) {
         args = [];
     }
@@ -20,6 +21,7 @@ exports.run = (client, message, args) => {
         authorize(JSON.parse(content), quoteGetter);
     });
 
+    // Authorize the client to read the spreadsheet
     function authorize(credentials, callback) {
         const { client_secret, client_id, redirect_uris } = credentials.installed;
         const oAuth2Client = new google.auth.OAuth2(
@@ -33,6 +35,7 @@ exports.run = (client, message, args) => {
         });
     }
 
+    // If there is no token found, get a new token
     function getNewToken(oAuth2Client, callback) {
         const authUrl = oAuth2Client.generateAuthUrl({
             access_type: 'offline',
@@ -70,6 +73,7 @@ exports.run = (client, message, args) => {
         });
     }
 
+    // Get all the quotes from the spreadsheet
     function quoteGetter(auth, args) {
         const sheets = google.sheets({ version: 'v4', auth });
         const Id = '1VMfOyKhksxGLifxPoA58seul2XvvGV7db8-deVYxB4s'
@@ -88,6 +92,7 @@ exports.run = (client, message, args) => {
         );
     }
 
+    // Process the quotes to look nice in the discord chat
     function quoteProcessor(data, args) {
         if (args.length <= 0) {
 
@@ -156,11 +161,13 @@ exports.run = (client, message, args) => {
         }
     }
 
+    // Search through all the quotes if the user uses the option 's' or 'search'
     function searchQuotes(keywords, quotes) {
-        //message.channel.send("This feature has temporarly been disabled, sorry for the inconvenience.");
+        message.channel.send("This feature has temporarly been disabled, sorry for the inconvenience.");
 
         let start = [];
-
+        
+        /*
         for (keyword of keywords) {
             // test for every keyword
 
@@ -175,12 +182,12 @@ exports.run = (client, message, args) => {
                     }
                 }
             }
-        }
+        }*/
 
         return start;
     }
 
-
+    // List the quotes if the user uses the option 'l' or 'list'
     function listQuotes(rows) {
         message.channel.send(`> **This feature is not added yet. Soon:tm:**`);
         console.log(`${message.author.username} tried to be sneaky and tried to access the list feature...`);
@@ -207,6 +214,7 @@ exports.run = (client, message, args) => {
         // })
     }
 
+    // Get a random quote from a list of quotes
     function getRandomQuote(rows) {
         let random;
         let quote;
@@ -230,6 +238,7 @@ exports.run = (client, message, args) => {
         return result;
     }
 
+    // Get the username of the person that the chosen quote is from
     function getQuoter(quote) {
         quoter = message.guild.members.get(quote[1]);
 
@@ -251,7 +260,6 @@ exports.run = (client, message, args) => {
         return quoterName;
     }
 
-    
     async function reactToOwnMessage(message) {
         // React to you own message
         try {
@@ -262,57 +270,7 @@ exports.run = (client, message, args) => {
         }
     }
     
-    function collectReactions(message, quote) {
-        reactToOwnMessage(message);
-        
-        // Configuring the ReactionCollector
-        const reactionFilter = (reaction, user) => {
-            return ['👍', '👎'].includes(reaction.emoji.name) && user.id !== client.user.id;
-        };
-        
-        // Initialising the reactionCollector
-        const voteCollector = message.createReactionCollector(reactionFilter, { time: 10000 });
-        
-        
-        // After the time is over
-        voteCollector.on('end', collected => {
-            console.log(`Collected ${collected.size} items`);
-            // Create the variables
-            let up, down;
-            
-            if (collected.size <= 0) return;
-            
-            for (reactions of collected) {
-                reaction = reactions[0];
-                
-                
-                if (reaction == '👍') {
-                    console.log('👍')
-                    up++;
-                } else {
-                    console.log('👎')
-                    down++;
-                }
-            }
-            
-            calcScore(up, down, message);
-        });
-        
-    }
     
-    function calcScore(up, down, message) {
-        scores = getScores(message);
-    }
-    
-    function getScores(quote) {
-        keywords = message.content.splice(6, )
-        searchQuotes()
-    }
-    
-    function writeToSpreadsheet(col, row, value) {
-        console.log(`Intended to write ${value} to ${row}:${col}`);
-    }
-
     message.delete();
 };
 

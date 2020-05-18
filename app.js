@@ -51,6 +51,12 @@ const MH = require('./messages/messageHandler.js');
 console.log(`Attempting to load the messageHandler.`);
 client.messages.set('messageHandler', MH);
 
+// Changing role
+client.assets = new Enmap();
+const changer = require('./assets/changer.js');
+
+console.log(`Attempting to load the color changer.`);
+client.assets.set('changer', changer);
+
 // Discord client
 client.login(client.config.token);
-

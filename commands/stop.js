@@ -1,4 +1,4 @@
-exports.run = (client, message, args, box) => {       //say command
+exports.run = (client, message, args) => {       //say command
   if (message.author.id == client.config.ownerID) {
     message.channel.send(`> Stopping...`);
     message.delete();

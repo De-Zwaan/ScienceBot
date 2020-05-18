@@ -1,8 +1,6 @@
 exports.run = (client, message) => {
-  let fs = require("fs");
+  // console.log(message);
   let messageLowerCase = message.content.toLowerCase();
-
-  //console.log(message.content);
   
   // Cussing Bot
   for (word of client.box.swearWords) {

@@ -16,7 +16,6 @@
     "long": "^4.0.0",
     "node-fetch": "^2.6.0",
     "register-scheme": "github:devsnek/node-register-scheme",
-    "snekfetch": "^4.0.4",
     "websocket": "^1.0.31",
     "winston": "^3.2.1",
     "ws": "^6.2.1",

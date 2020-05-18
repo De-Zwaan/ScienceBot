@@ -4,7 +4,6 @@
   "description": "A discord bot",
   "main": "app.js",
   "dependencies": {
-    "@discordjs/uws": "^11.149.1",
     "async": "^3.2.0",
     "better-sqlite-pool": "github:eslachance/better-sqlite-pool",
     "bufferutil": "^4.0.1",

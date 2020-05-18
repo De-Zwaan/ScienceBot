@@ -1,3 +1,4 @@
+config.json
 node_modules/.bin/gp12-pem.cmd
 node_modules/.bin/mime
 node_modules/.bin/mime.cmd
@@ -4790,7 +4791,6 @@ node_modules/qs/LICENSE
 node_modules/uuid/.eslintrc.json
 node_modules/uuid/README_js.md
 node_modules/.bin/wtfnode
-config.json
 node_modules/@discordjs/uws/bindings.gyp
 node_modules/@discordjs/uws/build_log.txt
 node_modules/@discordjs/uws/LICENSE

@@ -1,6 +1,6 @@
-FROM node
-WORKDIR /app
-COPY package.json /app
+FROM node:current
+WORKDIR /discordBot
+COPY package.json /discordBot
 RUN npm install
-COPY . /app
-CMD node app.js
+COPY . /discordBot
+CMD ["node", "app.js"]

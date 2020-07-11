@@ -2,21 +2,23 @@
   "name": "discordbot",
   "version": "1.0.1",
   "description": "A discord bot",
+  "private": true,
   "main": "app.js",
   "dependencies": {
     "async": "^3.2.0",
     "better-sqlite-pool": "github:eslachance/better-sqlite-pool",
     "bufferutil": "^4.0.1",
     "discord-rpc": "^3.1.1",
-    "enmap": "^5.2.4",
+    "discord.js": "^12.2.0",
+    "enmap": "^5.3.1",
     "googleapis": "^51.0.0",
     "help": "^3.0.2",
     "long": "^4.0.0",
     "node-fetch": "^2.6.0",
     "register-scheme": "github:devsnek/node-register-scheme",
     "websocket": "^1.0.31",
-    "winston": "^3.2.1",
-    "ws": "^7.3.0",
+    "winston": "^3.3.3",
+    "ws": "^7.3.1",
     "wtfnode": "^0.8.1"
   },
   "devDependencies": {},
@@ -32,6 +34,10 @@
     "discord.js",
     "discord-rpc"
   ],
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
   "author": "De_Zwaan",
   "license": "ISC"
 }

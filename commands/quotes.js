@@ -1,3 +1,5 @@
+const { SnowflakeUtil } = require('discord.js');
+
 exports.run = (client, message, args) => {
 
     if (args == undefined) {
@@ -115,6 +117,8 @@ exports.run = (client, message, args) => {
                 user = null;
             }
 
+        } else if (args[0].toLowerCase() == 'total') {
+            user = 'total'
             // If there is an argument, but it isn't a mention, try to find a user matching that argument
         } else {
             try {
@@ -123,7 +127,7 @@ exports.run = (client, message, args) => {
                 user = null;
             }
 
-        }        
+        }
         return user;
     }
 
@@ -142,22 +146,33 @@ exports.run = (client, message, args) => {
         if (user == null) {
             message.channel.send(`> Please provide a valid username`)
             throw `There was no valid username provided by ${message.author.user} while executing s!quotes`;
-        }
+        } else if (user == 'total') {
+            try {
+                let quoted = data.find(tempUser => tempUser[0] == `Total`)[2];
+                let quotes = data.find(tempUser => tempUser[0] == `Total`)[3];
 
-        try {
-            // Search the spreadsheet for the user and return the data
-            let quoted = data.find(tempUser => tempUser[1] == `${user.id}`)[2];
-            let quotes = data.find(tempUser => tempUser[1] == `${user.id}`)[3];
+                user = new Object();
+                user.displayName = 'Total';
+                return Array(user, quotes, quoted);
+            } catch (error) {
+                throw error;
+            }
+        } else {
+            try {
+                // Search the spreadsheet for the user and return the data
+                let quoted = data.find(tempUser => tempUser[1] == `${user.id}`)[2];
+                let quotes = data.find(tempUser => tempUser[1] == `${user.id}`)[3];
 
-            return Array(user, quotes, quoted);
-        } catch (error) {
-            // If there was an error, send a message
-            message.channel.send(`> It seems like that user has not yet been quoted.`);
-            console.log(`${Date()}\tFailed to return the amount of quotes/quoted.`);
-            throw error;
+                return Array(user, quotes, quoted);
+            } catch (error) {
+                // If there was an error, send a message
+                message.channel.send(`> It seems like that user has not yet been quoted.`);
+                console.log(`${Date()}\tFailed to return the amount of quotes/quoted.`);
+                throw error;
+            }
         }
     }
-    
+
     /**
      * Function to send a message in the same channel as the command with the information from the spreadsheet
      * 
@@ -174,9 +189,7 @@ exports.run = (client, message, args) => {
         } catch (error) {
             console.error(error);
         }
-
     }
-
     // Delete the message calling the command
     message.delete();
 }

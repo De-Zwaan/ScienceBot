@@ -1,7 +1,9 @@
 exports.run = (client, message, args) => {
     if (message.author.id != client.config.ownerID) return message.channel.send(`> Don't touch me!`);
 
-    // let server = client.guilds.find(guild => guild.id == 436144798462771200).roles;
+    
+    console.log(message.author.username)
+    // let server = client.guilds.cache.find(guild => guild.id == 436144798462771200).roles;
     // console.log(server)
     /*
     let channel = server.channels.find(channel => channel.name == "quotes2");

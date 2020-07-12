@@ -31,12 +31,12 @@ exports.run = (client, message, [r, g, b]) => {
         let printG = c.g < 16 ? "0" + c.g.toString(16) : c.g.toString(16);
         let printB = c.b < 16 ? "0" + c.b.toString(16) : c.b.toString(16);
 
-        guild = client.guilds.find(guild => guild.id == guildID).roles.find(role => role.id == roleID);
+        guild = client.guilds.cache.find(guild => guild.id == guildID).roles.cache.find(role => role.id == roleID);
         guild.setColor([c.r, c.g, c.b]).catch(function (err) {
             if (err) throw err;
         });
 
-        console.log(`${Date()}\tSet color in ${client.guilds.find(guild => guild.id == guildID).name} to #${printR}${printG}${printB}.`);
+        console.log(`${Date()}\tSet color in ${client.guilds.cache.find(guild => guild.id == guildID).name} to #${printR}${printG}${printB}.`);
     }
 
     function Color(r, g, b) {

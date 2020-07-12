@@ -93,14 +93,14 @@ exports.run = (client, message, args) => {
 
         if (args.length <= 0) {
             try {
-                user = message.guild.members.find(member => member.id == message.author.id);
+                user = message.guild.members.cache.find(member => member.id == message.author.id);
             } catch (error) {
                 user = null;
             }
 
         } else if (message.mentions.users.array().length >= 1) {
             try {
-                user = message.guild.members.find(member => member.id == message.mentions.users.first().id);
+                user = message.guild.members.cache.find(member => member.id == message.mentions.users.first().id);
             } catch (error) {
                 user = null;
             }

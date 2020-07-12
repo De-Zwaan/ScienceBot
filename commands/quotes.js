@@ -55,10 +55,10 @@ exports.run = (client, message, args) => {
 
                     // Parse the creds
                     let creds = JSON.parse(oldCreds)
-                    
+
                     // Change the value of googleInfo to the new token
                     creds.googleInfo = token;
-                    
+
                     // Store the creds back to disk for later program executions
                     fs.writeFile(TOKEN_PATH, JSON.stringify(creds), (err) => {
                         if (err) console.error(err);
@@ -83,11 +83,11 @@ exports.run = (client, message, args) => {
             function (err, res) {
                 if (err) return console.log('The API returned an error: ' + err);
 
-                findUser(res.data.values, args);
+                sendMessage(res.data.values, args);
             }
         );
     }
-    
+
     /**
      * Function to find a user if mentioned 
      *  
@@ -123,7 +123,9 @@ exports.run = (client, message, args) => {
                 user = null;
             }
 
-        }
+        }        
+        return user;
+    }
 
 
     /**
@@ -134,11 +136,28 @@ exports.run = (client, message, args) => {
      * 
      * @returns {Array}
      */
-            message.channel.send(`> Please provide a valid username`) 
-            // console.log(message.mentions.users.first())
-            return;
+    function getResults(data, args) {
+        // Find the user
+        user = findUser(args);
+        if (user == null) {
+            message.channel.send(`> Please provide a valid username`)
+            throw `There was no valid username provided by ${message.author.user} while executing s!quotes`;
         }
 
+        try {
+            // Search the spreadsheet for the user and return the data
+            let quoted = data.find(tempUser => tempUser[1] == `${user.id}`)[2];
+            let quotes = data.find(tempUser => tempUser[1] == `${user.id}`)[3];
+
+            return Array(user, quotes, quoted);
+        } catch (error) {
+            // If there was an error, send a message
+            message.channel.send(`> It seems like that user has not yet been quoted.`);
+            console.log(`${Date()}\tFailed to return the amount of quotes/quoted.`);
+            throw error;
+        }
+    }
+    
     /**
      * Function to send a message in the same channel as the command with the information from the spreadsheet
      * 
@@ -147,17 +166,15 @@ exports.run = (client, message, args) => {
      */
     function sendMessage(data, args) {
         try {
-            quoted = data.find(tempUser => tempUser[1] == `${user.id}`)[2];
-            quotes = data.find(tempUser => tempUser[1] == `${user.id}`)[3];
+            let result = getResults(data, args);
+
+            // If all succeeded, send the message with the data
+            console.log(`${Date()}\tReturned the amount of quotes/quoted for ${result[0].displayName}.`);
+            message.channel.send(`>>> **${result[0].displayName}**:\n\tQuoted:\t${result[1]}\n\tQuotes:\t${result[2]}`);
         } catch (error) {
             console.error(error);
-            message.channel.send(`> It seems like ${user.displayName} has not yet been quoted.`);
-            return;
         }
-        
 
-        console.log(`${Date()}\tReturned the amount of quotes/quoted for ${user.displayName}.`);
-        message.channel.send(`>>> **${user.displayName}**:\n\tQuoted:\t${quoted}\n\tQuotes:\t${quotes}`)
     }
 
     // Delete the message calling the command

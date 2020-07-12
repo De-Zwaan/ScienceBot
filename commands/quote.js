@@ -229,7 +229,7 @@ exports.run = (client, message, args) => {
     }
 
     function getQuoter(quote) {
-        quoter = message.guild.members.get(quote[1]);
+        quoter = message.guild.members.cache.get(quote[1]);
 
         if (!quoter) {
             let q = quote[0].split("#")[0].split("@");

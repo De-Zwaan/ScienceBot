@@ -88,9 +88,18 @@ exports.run = (client, message, args) => {
         );
     }
     
-    function findUser(data, args) {
+    /**
+     * Function to find a user if mentioned 
+     *  
+     * @param {Array} args array with the arguments given with the command
+     * 
+     * @callback sendResults() function that returns the results
+     */
+    function findUser(args) {
+        // Initialise an empty variable to store the user
         let user;
 
+        // If there is no user mentioned, use the user executing the command
         if (args.length <= 0) {
             try {
                 user = message.guild.members.cache.find(member => member.id == message.author.id);
@@ -98,6 +107,7 @@ exports.run = (client, message, args) => {
                 user = null;
             }
 
+            // If a user is mentioned, use the first user in the list (Random?)
         } else if (message.mentions.users.array().length >= 1) {
             try {
                 user = message.guild.members.cache.find(member => member.id == message.mentions.users.first().id);
@@ -105,21 +115,37 @@ exports.run = (client, message, args) => {
                 user = null;
             }
 
+            // If there is an argument, but it isn't a mention, try to find a user matching that argument
         } else {
             try {
-                user = message.guild.members.find(member => (member.displayName == args[0] || member.username == args[0] || member.id == args[0]));
+                user = message.guild.members.cache.find(member => (member.displayName == args[0] || member.username == args[0] || member.id == args[0]));
             } catch (error) {
                 user = null;
             }
 
         }
 
-        if (user === null) {
+
+    /**
+     * Function to get the information from the spreadsheet
+     * 
+     * @param {array} data a multidimentional array with the data from the spreadsheet
+     * @param {Array} args array with the arguments given with the command
+     * 
+     * @returns {Array}
+     */
             message.channel.send(`> Please provide a valid username`) 
             // console.log(message.mentions.users.first())
             return;
         }
 
+    /**
+     * Function to send a message in the same channel as the command with the information from the spreadsheet
+     * 
+     * @param {array} data a multidimentional array with the data from the spreadsheet
+     * @param {Array} args array with the arguments given with the command
+     */
+    function sendMessage(data, args) {
         try {
             quoted = data.find(tempUser => tempUser[1] == `${user.id}`)[2];
             quotes = data.find(tempUser => tempUser[1] == `${user.id}`)[3];
@@ -134,5 +160,6 @@ exports.run = (client, message, args) => {
         message.channel.send(`>>> **${user.displayName}**:\n\tQuoted:\t${quoted}\n\tQuotes:\t${quotes}`)
     }
 
+    // Delete the message calling the command
     message.delete();
 }

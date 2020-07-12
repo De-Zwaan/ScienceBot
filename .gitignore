@@ -1,4 +1,4 @@
 node_modules/
 config.json
-.vscode/launch.json
+.vscode/
 box.json

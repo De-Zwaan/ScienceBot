@@ -1,6 +1,6 @@
-FROM node:current
-WORKDIR /discordBot
-COPY package.json /discordBot
+FROM node:14
+WORKDIR /usr/scr/app
+COPY package*.json ./
 RUN npm install
-COPY . /discordBot
+COPY . .
 CMD ["node", "app.js"]

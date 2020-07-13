@@ -1,3 +1,5 @@
+// Hello
+
 const Enmap = require("enmap");
 const fs = require("fs");
 

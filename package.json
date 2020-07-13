@@ -10,7 +10,7 @@
     "bufferutil": "^4.0.1",
     "discord-rpc": "^3.1.1",
     "discord.js": "^12.2.0",
-    "enmap": "^5.3.1",
+    "enmap": "^5.3.2",
     "googleapis": "^51.0.0",
     "help": "^3.0.2",
     "long": "^4.0.0",

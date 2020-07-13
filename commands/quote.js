@@ -21,7 +21,14 @@ exports.run = (client, message, args) => {
         authorize(JSON.parse(content), quoteGetter);
     });
 
-    // Authorize the client to read the spreadsheet
+    /** 
+     * Authorize the client to read the spreadsheet
+     * 
+     * @param {Object} credentials the credentials in config.json
+     * @param {CallableFunction} callback the function to be called after completing authorisation
+     * 
+     * @callback callback start quoteGetter
+     */
     function authorize(credentials, callback) {
         const { client_secret, client_id, redirect_uris } = credentials.installed;
         const oAuth2Client = new google.auth.OAuth2(
@@ -35,7 +42,12 @@ exports.run = (client, message, args) => {
         });
     }
 
-    // If there is no token found, get a new token
+    /**
+     * If there is no token found, get a new token
+     * 
+     * @param {oAuth2Client} oAuth2Client
+     * @param {CallableFunction} callback the function to call after
+     */
     function getNewToken(oAuth2Client, callback) {
         const authUrl = oAuth2Client.generateAuthUrl({
             access_type: 'offline',
@@ -73,7 +85,14 @@ exports.run = (client, message, args) => {
         });
     }
 
-    // Get all the quotes from the spreadsheet
+    /** 
+     * Get all the quotes from the spreadsheet
+     * 
+     * @param {oAuth2Client} auth the authorisation object
+     * @param {Array} args the arguments given with the command
+     * 
+     * @callback quoteProcessor start the function to process and pretify the quotes
+     */
     function quoteGetter(auth, args) {
         const sheets = google.sheets({ version: 'v4', auth });
         const Id = '1VMfOyKhksxGLifxPoA58seul2XvvGV7db8-deVYxB4s'
@@ -92,7 +111,17 @@ exports.run = (client, message, args) => {
         );
     }
 
-    // Process the quotes to look nice in the discord chat
+    /**
+     * Process the quotes to look nice in the discord chat
+     * 
+     * @param {Array} data a multidimentional array containing all the data from the spreadsheet
+     * @param {Array} args an array containing all the arguments given with the command:
+     * - s/search:   return a quote/quotes matching the keywords given in args[s+1..end-1]
+     * - r/random:   return a random quote
+     * - l/list:     return a list of quotes
+     * 
+     * @send the message in the channel
+     */
     function quoteProcessor(data, args) {
         if (args.length <= 0) {
 
@@ -161,7 +190,14 @@ exports.run = (client, message, args) => {
         }
     }
 
-    // Search through all the quotes if the user uses the option 's' or 'search'
+    /**
+     * Search through all the quotes if the user uses the option 's' or 'search'
+     * 
+     * @param {Array} keywords the keywords that should be found in the array
+     * @param {Array} quotes a multidimentional array with the quotes from the spreadsheet
+     * 
+     * @returns {Array} an array with the quotes found to be matching the keywords
+     */
     function searchQuotes(keywords, quotes) {
         message.channel.send("This feature has temporarly been disabled, sorry for the inconvenience.");
 
@@ -187,10 +223,13 @@ exports.run = (client, message, args) => {
         return start;
     }
 
-    // List the quotes if the user uses the option 'l' or 'list'
-    function listQuotes(rows) {
-        message.channel.send(`> **This feature is not added yet. Soon:tm:**`);
-        console.log(`${message.author.username} tried to be sneaky and tried to access the list feature...`);
+    /** 
+     * List the quotes if the user uses the option 'l' or 'list' 
+     * And send a message in the channel with the result
+     * 
+     * @param {Array} rows a multidimentional array with all the quotes
+     * @param {Number} quotesPerPage an intager amount of quote to display per page
+     */
 
         // Get the amount of pages
         // Get the page number
@@ -214,7 +253,13 @@ exports.run = (client, message, args) => {
         // })
     }
 
-    // Get a random quote from a list of quotes
+    /**
+     * Get a random quote from a list of quotes
+     * 
+     * @param {Array} rows a multidimentional array with the quotes
+     * 
+     * @returns {Array} an array containing the quote and information
+     */
     function getRandomQuote(rows) {
         let random;
         let quote;
@@ -238,7 +283,13 @@ exports.run = (client, message, args) => {
         return result;
     }
 
-    // Get the username of the person that the chosen quote is from
+    /**
+     * Get the username of the person that the chosen quote is from
+     * 
+     * @param {Array} quote an array containing a single quote
+     * 
+     * @returns {String} the name of the person quoted
+     */
     function getQuoter(quote) {
         quoter = message.guild.members.get(quote[1]);
 
@@ -270,7 +321,7 @@ exports.run = (client, message, args) => {
         }
     }
     
-    
+    // Delete the original message
     message.delete();
 };
 

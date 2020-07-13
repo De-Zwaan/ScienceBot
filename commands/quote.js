@@ -137,7 +137,6 @@ exports.run = (client, message, args) => {
             console.log(`${Date()}\tRequested random quote: "${result[0]}"\t-${result[1]} ${result[2]}, for "${message.author.username}"`);
 
             message.channel.send(`>>> *"${result[0]}"* \n\t\t\t-${result[1]} ${result[2]}`)
-            // .then(async message => collectReactions(message, result[0]));
 
         } else {
             if (args[0] == 'random' || args[0].toLowerCase() == `r`) {
@@ -183,7 +182,6 @@ exports.run = (client, message, args) => {
                         console.log(`${Date()}\tSearched the quotes database using "${keywords.join(`", "`)}", for "${message.author.username}".\n\tFound ${found.length} results. Returned: "${result[0]}" \t-${result[1]} ${result[2]}`);
 
                         message.channel.send(`>>> *"${result[0]}"* \n\t\t\t-${result[1]} ${result[2]}`)
-                        // .then(async message => collectReactions(message, result[0]));
                     }
                 }
             }
@@ -336,16 +334,6 @@ exports.run = (client, message, args) => {
             }
         }
         return quoterName;
-    }
-
-    async function reactToOwnMessage(message) {
-        // React to you own message
-        try {
-            await message.react('👍')
-            await message.react('👎')
-        } catch (error) {
-            console.log(error);
-        }
     }
     
     // Delete the original message

@@ -199,27 +199,27 @@ exports.run = (client, message, args) => {
      * @returns {Array} an array with the quotes found to be matching the keywords
      */
     function searchQuotes(keywords, quotes) {
-        message.channel.send("This feature has temporarly been disabled, sorry for the inconvenience.");
+        //message.channel.send("This feature has temporarly been disabled, sorry for the inconvenience.");
 
         let start = [];
         
-        /*
-        for (keyword of keywords) {
             // test for every keyword
+        for (keyword of keywords) {
+            let searchTerm = RegExp(keyword, 'i');
 
-            for (quote of quotes) {
                 // test every quote
+            for (quote of quotes) {
 
-                for (prop of quote) {
                     // test for every property
+                for (prop of quote) {
 
-                    if (prop.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) {
-                        start.push(quote)
+                    // If the regex matches the prop, add the quote to the array
+                    if (searchTerm.test(prop)) {
+                        start.push(quote);
+                    }
                     }
                 }
             }
-        }*/
-
         return start;
     }
 

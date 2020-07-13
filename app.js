@@ -9,7 +9,7 @@ const client = new Discord.Client();
 const config = require("./config.json");
 const box = require("./box.json");
 
-// We also need to make sure we're attaching the config to the CLIENT so it's accessible everywhere!
+// Attach config.json and box.json to the client
 client.config = config;
 client.box = box;
 
@@ -32,31 +32,40 @@ fs.readdir("./commands/", (err, files) => {
     if (!file.endsWith(".js")) return;
     let props = require(`./commands/${file}`);
     let commandName = file.split(".")[0];
-    console.log(`Attempting to load the command "${commandName}".`);
+    process.stdout.write(`Attempting to load "s!${commandName}"\r`);
     client.commands.set(commandName, props);
-  });
+    process.stdout.clearLine();
+    process.stdout.write(`Loaded "s!${commandName}"\n`);
+  })
 });
 
-// Rich Presence 
-client.RichPresence = new Enmap();
-const RPC = require('./rpc.js');
+// Resources
+client.resources = new Enmap();
 
-console.log('Attempting to load Rich Presence.');
-client.RichPresence.set('rpc', RPC);
+/**
+ * function to load the resources that are not events or commands into memory and attach them to the client
+ * 
+ * @param {String} name the name of the resource to be displayed in the logs
+ * @param {String} abbr the abbreviation of the name to be used as the name in the enmap
+ * @param {String} location the path to the file with the resource
+ */
 
+
+function loadResource(name, abbr, location) {
+  const service = require(location);
+
+  console.log(`Attempting to load ${name}\r`);
+  client.resources.set(abbr.toLowerCase(), service);
+  process.stdout.clearLine();
+  process.stdout.write(`Loaded ${name}\n`);
+}
+
+// Rich Presence
+loadResource('Rich Precence',   'RPC',      './assets/rpc.js');
 // Message handler
-client.messages = new Enmap();
-const MH = require('./messages/messageHandler.js');
-
-console.log(`Attempting to load the messageHandler.`);
-client.messages.set('messageHandler', MH);
-
+loadResource('Message Handler', 'MH',       './messages/messageHandler.js');
 // Changing role
-client.assets = new Enmap();
-const changer = require('./assets/changer.js');
-
-console.log(`Attempting to load the color changer.`);
-client.assets.set('changer', changer);
+loadResource('Color Changer',   'changer',  './assets/changer.js');
 
 // Discord client
 client.login(client.config.token);

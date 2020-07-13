@@ -81,20 +81,20 @@ exports.run = (client, box) => {
         let printB = newRoleColor.b < 16 ? "0" + newRoleColor.b.toString(16) : newRoleColor.b.toString(16);
 
         // Getting the path to the role of the user
-        TESTRole = client.guilds.find(guild => guild.id == 500671784627208205).roles.find(role => role.id == 535551545190907914)
+        TESTRole = client.guilds.cache.find(guild => guild.id == 500671784627208205).roles.cache.find(role => role.id == 535551545190907914)
         // Changing the color of the role
         TESTRole.setColor([newRoleColor.r, newRoleColor.g, newRoleColor.b]).catch(function (err) {
             if (err) throw err;
         });
-        console.log(`Set color in ${client.guilds.find(guild => guild.id == 500671784627208205).name} to #${printR}${printG}${printB}, at ${currentDate}.`);
+        console.log(`Set color in ${client.guilds.cache.find(guild => guild.id == 500671784627208205).name} to #${printR}${printG}${printB}, at ${currentDate}.`);
 
         // Getting the path to the role of the user
-        TGSRole = client.guilds.find(guild => guild.id == 436144798462771200).roles.find(role => role.id == 593892108700745731)
+        TGSRole = client.guilds.cache.find(guild => guild.id == 436144798462771200).roles.cache.find(role => role.id == 593892108700745731)
         // Changing the color of the role
         TGSRole.setColor([newRoleColor.r, newRoleColor.g, newRoleColor.b]).catch(function (err) {
             if (err) throw err;
         });
-        console.log(`Set color in ${client.guilds.find(guild => guild.id == 436144798462771200).name} to #${printR}${printG}${printB}, at ${currentDate}.`);
+        console.log(`Set color in ${client.guilds.cache.find(guild => guild.id == 436144798462771200).name} to #${printR}${printG}${printB}, at ${currentDate}.`);
 
         // Writing everything to box.json
         fs.writeFile(boxPath, JSON.stringify(box), `utf-8`, function (err) {

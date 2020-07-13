@@ -1,3 +1,5 @@
+const { SnowflakeUtil } = require('discord.js');
+
 exports.run = (client, message, args) => {
 
     if (args == undefined) {
@@ -55,10 +57,10 @@ exports.run = (client, message, args) => {
 
                     // Parse the creds
                     let creds = JSON.parse(oldCreds)
-                    
+
                     // Change the value of googleInfo to the new token
                     creds.googleInfo = token;
-                    
+
                     // Store the creds back to disk for later program executions
                     fs.writeFile(TOKEN_PATH, JSON.stringify(creds), (err) => {
                         if (err) console.error(err);
@@ -83,56 +85,111 @@ exports.run = (client, message, args) => {
             function (err, res) {
                 if (err) return console.log('The API returned an error: ' + err);
 
-                findUser(res.data.values, args);
+                sendMessage(res.data.values, args);
             }
         );
     }
-    
-    function findUser(data, args) {
+
+    /**
+     * Function to find a user if mentioned 
+     *  
+     * @param {Array} args array with the arguments given with the command
+     * 
+     * @callback sendResults() function that returns the results
+     */
+    function findUser(args) {
+        // Initialise an empty variable to store the user
         let user;
 
+        // If there is no user mentioned, use the user executing the command
         if (args.length <= 0) {
             try {
-                user = message.guild.members.find(member => member.id == message.author.id);
+                user = message.guild.members.cache.find(member => member.id == message.author.id);
             } catch (error) {
                 user = null;
             }
 
+            // If a user is mentioned, use the first user in the list (Random?)
         } else if (message.mentions.users.array().length >= 1) {
             try {
-                user = message.guild.members.find(member => member.id == message.mentions.users.first().id);
+                user = message.guild.members.cache.find(member => member.id == message.mentions.users.first().id);
             } catch (error) {
                 user = null;
             }
 
+        } else if (args[0].toLowerCase() == 'total') {
+            user = 'total'
+            // If there is an argument, but it isn't a mention, try to find a user matching that argument
         } else {
             try {
-                user = message.guild.members.find(member => (member.displayName == args[0] || member.username == args[0] || member.id == args[0]));
+                user = message.guild.members.cache.find(member => (member.displayName == args[0] || member.username == args[0] || member.id == args[0]));
             } catch (error) {
                 user = null;
             }
 
         }
-
-        if (user === null) {
-            message.channel.send(`> Please provide a valid username`) 
-            // console.log(message.mentions.users.first())
-            return;
-        }
-
-        try {
-            quoted = data.find(tempUser => tempUser[1] == `${user.id}`)[2];
-            quotes = data.find(tempUser => tempUser[1] == `${user.id}`)[3];
-        } catch (error) {
-            console.error(error);
-            message.channel.send(`> It seems like ${user.displayName} has not yet been quoted.`);
-            return;
-        }
-        
-
-        console.log(`${Date()}\tReturned the amount of quotes/quoted for ${user.displayName}.`);
-        message.channel.send(`>>> **${user.displayName}**:\n\tQuoted:\t${quoted}\n\tQuotes:\t${quotes}`)
+        return user;
     }
 
+
+    /**
+     * Function to get the information from the spreadsheet
+     * 
+     * @param {array} data a multidimentional array with the data from the spreadsheet
+     * @param {Array} args array with the arguments given with the command
+     * 
+     * @returns {Array}
+     */
+    function getResults(data, args) {
+        // Find the user
+        user = findUser(args);
+        if (user == null) {
+            message.channel.send(`> Please provide a valid username`)
+            throw `There was no valid username provided by ${message.author.user} while executing s!quotes`;
+        } else if (user == 'total') {
+            try {
+                let quoted = data.find(tempUser => tempUser[0] == `Total`)[2];
+                let quotes = data.find(tempUser => tempUser[0] == `Total`)[3];
+
+                user = new Object();
+                user.displayName = 'Total';
+                return Array(user, quotes, quoted);
+            } catch (error) {
+                throw error;
+            }
+        } else {
+            try {
+                // Search the spreadsheet for the user and return the data
+                let quoted = data.find(tempUser => tempUser[1] == `${user.id}`)[2];
+                let quotes = data.find(tempUser => tempUser[1] == `${user.id}`)[3];
+
+                return Array(user, quotes, quoted);
+            } catch (error) {
+                // If there was an error, send a message
+                message.channel.send(`> It seems like that user has not yet been quoted.`);
+                console.log(`${Date()}\tFailed to return the amount of quotes/quoted.`);
+                throw error;
+            }
+        }
+    }
+
+    /**
+     * Function to send a message in the same channel as the command with the information from the spreadsheet
+     * 
+     * @param {array} data a multidimentional array with the data from the spreadsheet
+     * @param {Array} args array with the arguments given with the command
+     */
+    function sendMessage(data, args) {
+        try {
+            let result = getResults(data, args);
+
+            // If all succeeded, send the message with the data
+            console.log(`${Date()}\tReturned the amount of quotes/quoted for ${result[0].displayName}.`);
+            message.channel.send(`>>> **${result[0].displayName}**:\n\tQuoted:\t${result[1]}\n\tQuotes:\t${result[2]}`);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    // Delete the message calling the command
     message.delete();
 }

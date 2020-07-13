@@ -4,7 +4,7 @@ module.exports = (client, message, box) => {
 
   // See if messages start with the prefix, if not --> messageHandler.js
   if (message.content.toLowerCase().indexOf(client.config.prefix) !== 0) {
-    const msg = client.messages.get("messageHandler");
+    const msg = client.resources.get("messageHandler");
     if (!msg) return;
     msg.run(client, message);
 
@@ -23,7 +23,7 @@ module.exports = (client, message, box) => {
     cmd.run(client, message, args);
   }
 
-  const color = client.assets.get('changer');
+  const color = client.resources.get('changer');
   if (!color) return;
 
   color.run(client, box);

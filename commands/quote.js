@@ -1,5 +1,6 @@
 exports.run = (client, message, args) => {
 
+    // If there are no useful arguments given set args to an empty array
     if (args == undefined) {
         args = [];
     }
@@ -14,12 +15,20 @@ exports.run = (client, message, args) => {
     const TOKEN_PATH = 'config.json';
 
     // Load client secrets from a local file.
-    fs.readFile(TOKEN_PATH, (err, content) => {
+    fs.readFile('config.json', (err, content) => {
         if (err) return console.log(`${Date()}\tError loading client secret file: ${err}`);
         // Authorize a client with credentials, then call the Google Sheets API.
         authorize(JSON.parse(content), quoteGetter);
     });
 
+    /** 
+     * Authorize the client to read the spreadsheet
+     * 
+     * @param {Object} credentials the credentials in config.json
+     * @param {CallableFunction} callback the function to be called after completing authorisation
+     * 
+     * @callback callback start quoteGetter
+     */
     function authorize(credentials, callback) {
         const { client_secret, client_id, redirect_uris } = credentials.installed;
         const oAuth2Client = new google.auth.OAuth2(
@@ -27,12 +36,18 @@ exports.run = (client, message, args) => {
 
         // Check if we have previously stored a token.
         fs.readFile(TOKEN_PATH, (err, creds) => {
-            if (err || JSON.parse(creds).googleInfo == undefined) return getNewToken(oAuth2Client, callback);
+            if (err) return getNewToken(oAuth2Client, callback);
             oAuth2Client.setCredentials(JSON.parse(creds).googleInfo);
             callback(oAuth2Client, args);
         });
     }
 
+    /**
+     * If there is no token found, get a new token
+     * 
+     * @param {oAuth2Client} oAuth2Client
+     * @param {CallableFunction} callback the function to call after
+     */
     function getNewToken(oAuth2Client, callback) {
         const authUrl = oAuth2Client.generateAuthUrl({
             access_type: 'offline',
@@ -55,10 +70,10 @@ exports.run = (client, message, args) => {
 
                     // Parse the creds
                     let creds = JSON.parse(oldCreds)
-                    
+
                     // Change the value of googleInfo to the new token
                     creds.googleInfo = token;
-                    
+
                     // Store the creds back to disk for later program executions
                     fs.writeFile(TOKEN_PATH, JSON.stringify(creds), (err) => {
                         if (err) console.error(err);
@@ -70,6 +85,14 @@ exports.run = (client, message, args) => {
         });
     }
 
+    /** 
+     * Get all the quotes from the spreadsheet
+     * 
+     * @param {oAuth2Client} auth the authorisation object
+     * @param {Array} args the arguments given with the command
+     * 
+     * @callback quoteProcessor start the function to process and pretify the quotes
+     */
     function quoteGetter(auth, args) {
         const sheets = google.sheets({ version: 'v4', auth });
         const Id = '1VMfOyKhksxGLifxPoA58seul2XvvGV7db8-deVYxB4s'
@@ -88,6 +111,17 @@ exports.run = (client, message, args) => {
         );
     }
 
+    /**
+     * Process the quotes to look nice in the discord chat
+     * 
+     * @param {Array} data a multidimentional array containing all the data from the spreadsheet
+     * @param {Array} args an array containing all the arguments given with the command:
+     * - s/search:   return a quote/quotes matching the keywords given in args[s+1..end-1]
+     * - r/random:   return a random quote
+     * - l/list:     return a list of quotes
+     * 
+     * @send the message in the channel
+     */
     function quoteProcessor(data, args) {
         if (args.length <= 0) {
 
@@ -100,8 +134,10 @@ exports.run = (client, message, args) => {
 
             let result = getRandomQuote(data);
 
-            message.channel.send(`>>> *"${result[0]}"* \n\t\t\t-${result[1]} ${result[2]}`);
             console.log(`${Date()}\tRequested random quote: "${result[0]}"\t-${result[1]} ${result[2]}, for "${message.author.username}"`);
+
+            message.channel.send(`>>> *"${result[0]}"* \n\t\t\t-${result[1]} ${result[2]}`)
+            // .then(async message => collectReactions(message, result[0]));
 
         } else {
             if (args[0] == 'random' || args[0].toLowerCase() == `r`) {
@@ -111,7 +147,7 @@ exports.run = (client, message, args) => {
                 console.log(`${Date()}\tRequested random quote: "${result[0]}"\t-${result[1]} ${result[2]}, for ${message.author.username}`);
             } else if (args[0].toLowerCase() == `list` || args[0].toLowerCase() == `l`) {
                 // Display list of all quotes
-                listQuotes(data);
+                listQuotes(data, 10, null);
 
             } else if (args[0].toLowerCase() == `search` || args[0].toLowerCase() == `s`) {
                 // When the search command is included
@@ -124,9 +160,7 @@ exports.run = (client, message, args) => {
                     args.push("random");
                 }
 
-                let end = args.length - 1;
-
-                let keywords = args.slice(0, end);
+                let keywords = args.slice(0, args.length - 1);
 
                 let found = searchQuotes(keywords, data);
 
@@ -136,75 +170,123 @@ exports.run = (client, message, args) => {
                     console.log(`${Date()}\tFound no quotes matching: "${keywords.join(`", "`)}", search executed by ${message.author.username}`);
 
                 } else {
-                    lastArg = args[end].toLowerCase();
+                    lastArg = args[args.length - 1].toLowerCase();
 
                     if (lastArg == `list` || lastArg == `l`) {
                         // If the user includes "list" on the end of the s!quote command
-                        result = listQuotes(found);
+                        result = listQuotes(found, 10, keywords);
 
                     } else if (lastArg == `random` || lastArg == undefined || lastArg == `r`) {
                         // If the user includes "random" on the end of the s!quote command or does not include a keyword
                         result = getRandomQuote(found);
 
-                        message.channel.send(`>>> *"${result[0]}"* \n\t\t\t-${result[1]} ${result[2]}`);
                         console.log(`${Date()}\tSearched the quotes database using "${keywords.join(`", "`)}", for "${message.author.username}".\n\tFound ${found.length} results. Returned: "${result[0]}" \t-${result[1]} ${result[2]}`);
+
+                        message.channel.send(`>>> *"${result[0]}"* \n\t\t\t-${result[1]} ${result[2]}`)
+                        // .then(async message => collectReactions(message, result[0]));
                     }
                 }
             }
         }
     }
 
+    /**
+     * Search through all the quotes if the user uses the option 's' or 'search'
+     * 
+     * @param {Array} keywords the keywords that should be found in the array
+     * @param {Array} quotes a multidimentional array with the quotes from the spreadsheet
+     * 
+     * @returns {Array} an array with the quotes found to be matching the keywords
+     */
     function searchQuotes(keywords, quotes) {
         //message.channel.send("This feature has temporarly been disabled, sorry for the inconvenience.");
 
         let start = [];
-
-        for (keyword of keywords) {
+        
             // test for every keyword
+        for (keyword of keywords) {
+            let searchTerm = RegExp(keyword, 'i');
 
-            for (quote of quotes) {
                 // test every quote
+            for (quote of quotes) {
 
-                for (prop of quote) {
                     // test for every property
+                for (prop of quote) {
 
-                    if (prop.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) {
-                        start.push(quote)
+                    // If the regex matches the prop, add the quote to the array
+                    if (searchTerm.test(prop)) {
+                        start.push(quote);
+                    }
                     }
                 }
             }
-        }
-
         return start;
     }
 
+    /** 
+     * List the quotes if the user uses the option 'l' or 'list' 
+     * And send a message in the channel with the result
+     * 
+     * @param {Array} rows a multidimentional array with all the quotes
+     * @param {Number} quotesPerPage an intager amount of quote to display per page
+     */
+    function listQuotes(rows, quotesPerPage, keywords) {
+        // message.channel.send(`> **This feature is not added yet. Soon:tm:**`);
+        // console.log(`${message.author.username} tried to be sneaky and tried to access the list feature...`);
+        /** 
+         * TODO: 
+         * - Explore multiple pages of quotes
+         * - Beautify
+         */
 
-    function listQuotes(rows) {
-        message.channel.send(`> **This feature is not added yet. Soon:tm:**`);
-        console.log(`${message.author.username} tried to be sneaky and tried to access the list feature...`);
+        let title;
+        if (keywords === null) {
+            title = "All of the quotes";
+        } else {
+            titel = "Quotes matching: " + keywords.join(", ") + "";
+        } 
 
-        // Get the amount of pages
-        // Get the page number
-        // Get the quotes for that page
+        let index = 0;
 
-        // message.channel.send({
-        //     "embed": {
-        //         "description": "View the whole spreadsheet with quotes [here](https://docs.google.com/spreadsheets/d/1VMfOyKhksxGLifxPoA58seul2XvvGV7db8-deVYxB4s/edit?usp=sharing).",
-        //         "color": 14805148,
-        //         "fields": [
-        //             {
-        //                 "name": "test",
-        //                 "value": "test"
-        //             },
+        let pagesAmount = Math.ceil(rows.length / quotesPerPage)
+        let pages = [];
 
-        //         ],
-        //         "footer": {
-        //             "text": "Page " + index + " of " + pages.length
-        //         },
-        //     }
-        // })
+        // For every page, 
+        for (let i = 0; i < pagesAmount; i++) {
+            // Cut out quotesPerPage amount of rows and push them to a page
+            pages.push(rows.splice(0, quotesPerPage));
+        }
+
+        // The basic embed template
+        let template = {
+            title: "",
+            description: "View the whole spreadsheet with quotes [here](https://docs.google.com/spreadsheets/d/1VMfOyKhksxGLifxPoA58seul2XvvGV7db8-deVYxB4s/edit?usp=sharing).",
+            color: 2520537,
+            fields: [],
+            footer: {
+                text: "Page " + (index + 1) + " of " + pagesAmount
+            }
+        }
+
+        pages[index].forEach(row => {
+            result = getQuoter(row);
+            template.title = title;
+            template.fields.push({
+                name: `*"${row[2]}"*`,
+                value: `\t- ${result} ${row[3]}`
+            });
+        });
+
+        message.channel.send({ embed: template});
     }
 
+    /**
+     * Get a random quote from a list of quotes
+     * 
+     * @param {Array} rows a multidimentional array with the quotes
+     * 
+     * @returns {Array} an array containing the quote and information
+     */
     function getRandomQuote(rows) {
         let random;
         let quote;
@@ -228,8 +310,15 @@ exports.run = (client, message, args) => {
         return result;
     }
 
+    /**
+     * Get the username of the person that the chosen quote is from
+     * 
+     * @param {Array} quote an array containing a single quote
+     * 
+     * @returns {String} the name of the person quoted
+     */
     function getQuoter(quote) {
-        quoter = message.guild.members.cache.get(quote[1]);
+        let quoter = message.guild.members.cache.get(quote[1]);
 
         if (!quoter) {
             let q = quote[0].split("#")[0].split("@");
@@ -249,6 +338,17 @@ exports.run = (client, message, args) => {
         return quoterName;
     }
 
+    async function reactToOwnMessage(message) {
+        // React to you own message
+        try {
+            await message.react('👍')
+            await message.react('👎')
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
+    // Delete the original message
     message.delete();
-}
+};
 

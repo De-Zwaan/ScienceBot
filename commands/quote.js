@@ -147,7 +147,7 @@ exports.run = (client, message, args) => {
                 console.log(`${Date()}\tRequested random quote: "${result[0]}"\t-${result[1]} ${result[2]}, for ${message.author.username}`);
             } else if (args[0].toLowerCase() == `list` || args[0].toLowerCase() == `l`) {
                 // Display list of all quotes
-                listQuotes(data);
+                listQuotes(data, 10, null);
 
             } else if (args[0].toLowerCase() == `search` || args[0].toLowerCase() == `s`) {
                 // When the search command is included
@@ -170,11 +170,11 @@ exports.run = (client, message, args) => {
                     console.log(`${Date()}\tFound no quotes matching: "${keywords.join(`", "`)}", search executed by ${message.author.username}`);
 
                 } else {
-                    lastArg = args[end].toLowerCase();
+                    lastArg = args[args.length - 1].toLowerCase();
 
                     if (lastArg == `list` || lastArg == `l`) {
                         // If the user includes "list" on the end of the s!quote command
-                        result = listQuotes(found);
+                        result = listQuotes(found, 10, keywords);
 
                     } else if (lastArg == `random` || lastArg == undefined || lastArg == `r`) {
                         // If the user includes "random" on the end of the s!quote command or does not include a keyword
@@ -230,27 +230,54 @@ exports.run = (client, message, args) => {
      * @param {Array} rows a multidimentional array with all the quotes
      * @param {Number} quotesPerPage an intager amount of quote to display per page
      */
+    function listQuotes(rows, quotesPerPage, keywords) {
+        // message.channel.send(`> **This feature is not added yet. Soon:tm:**`);
+        // console.log(`${message.author.username} tried to be sneaky and tried to access the list feature...`);
+        /** 
+         * TODO: 
+         * - Explore multiple pages of quotes
+         * - Beautify
+         */
 
-        // Get the amount of pages
-        // Get the page number
-        // Get the quotes for that page
+        let title;
+        if (keywords === null) {
+            title = "All of the quotes";
+        } else {
+            titel = "Quotes matching: " + keywords.join(", ") + "";
+        } 
 
-        // message.channel.send({
-        //     "embed": {
-        //         "description": "View the whole spreadsheet with quotes [here](https://docs.google.com/spreadsheets/d/1VMfOyKhksxGLifxPoA58seul2XvvGV7db8-deVYxB4s/edit?usp=sharing).",
-        //         "color": 14805148,
-        //         "fields": [
-        //             {
-        //                 "name": "test",
-        //                 "value": "test"
-        //             },
+        let index = 0;
 
-        //         ],
-        //         "footer": {
-        //             "text": "Page " + index + " of " + pages.length
-        //         },
-        //     }
-        // })
+        let pagesAmount = Math.ceil(rows.length / quotesPerPage)
+        let pages = [];
+
+        // For every page, 
+        for (let i = 0; i < pagesAmount; i++) {
+            // Cut out quotesPerPage amount of rows and push them to a page
+            pages.push(rows.splice(0, quotesPerPage));
+        }
+
+        // The basic embed template
+        let template = {
+            title: "",
+            description: "View the whole spreadsheet with quotes [here](https://docs.google.com/spreadsheets/d/1VMfOyKhksxGLifxPoA58seul2XvvGV7db8-deVYxB4s/edit?usp=sharing).",
+            color: 2520537,
+            fields: [],
+            footer: {
+                text: "Page " + (index + 1) + " of " + pagesAmount
+            }
+        }
+
+        pages[index].forEach(row => {
+            result = getQuoter(row);
+            template.title = title;
+            template.fields.push({
+                name: `*"${row[2]}"*`,
+                value: `\t- ${result} ${row[3]}`
+            });
+        });
+
+        message.channel.send({ embed: template});
     }
 
     /**
@@ -291,7 +318,7 @@ exports.run = (client, message, args) => {
      * @returns {String} the name of the person quoted
      */
     function getQuoter(quote) {
-        quoter = message.guild.members.get(quote[1]);
+        let quoter = message.guild.members.cache.get(quote[1]);
 
         if (!quoter) {
             let q = quote[0].split("#")[0].split("@");

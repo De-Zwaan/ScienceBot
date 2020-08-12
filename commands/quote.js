@@ -36,7 +36,7 @@ exports.run = (client, message, args) => {
 
         // Check if we have previously stored a token.
         fs.readFile(TOKEN_PATH, (err, creds) => {
-            if (err) return getNewToken(oAuth2Client, callback);
+            if (err || !creds.googleInfo) return getNewToken(oAuth2Client, callback);
             oAuth2Client.setCredentials(JSON.parse(creds).googleInfo);
             callback(oAuth2Client, args);
         });

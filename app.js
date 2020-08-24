@@ -1,7 +1,6 @@
-// Hello
-
 const Enmap = require("enmap");
 const fs = require("fs");
+const readline = require("readline");
 
 const Discord = require('discord.js');
 
@@ -36,7 +35,8 @@ fs.readdir("./commands/", (err, files) => {
     let commandName = file.split(".")[0];
     process.stdout.write(`Attempting to load "${client.config.prefix}${commandName}"\r`);
     client.commands.set(commandName, props);
-    process.stdout.clearLine();
+    readline.clearLine(process.stdout, 0);
+    readline.cursorTo(process.stdout, 0);
     process.stdout.write(`Loaded "${client.config.prefix}${commandName}"\n`);
   })
 });
@@ -54,9 +54,10 @@ client.resources = new Enmap();
 function loadResource(name, abbr, location) {
   const service = require(location);
 
-  console.log(`Attempting to load ${name}\r`);
+  process.stdout.write(`Attempting to load ${name}\r`);
   client.resources.set(abbr.toLowerCase(), service);
-  process.stdout.clearLine();
+  readline.clearLine(process.stdout, 0);
+  readline.cursorTo(process.stdout, 0);
   process.stdout.write(`Loaded ${name}\n`);
 }
 

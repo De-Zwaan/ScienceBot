@@ -6,20 +6,17 @@
   "main": "app.js",
   "dependencies": {
     "async": "^3.2.0",
-    "better-sqlite-pool": "github:eslachance/better-sqlite-pool",
-    "bufferutil": "^4.0.1",
-    "discord-rpc": "^3.1.1",
-    "discord.js": "^12.2.0",
-    "enmap": "^5.3.2",
+    "bufferutil": "^4.0.3",
+    "discord.js": "^12.5.1",
+    "enmap": "^5.8.2",
     "googleapis": "^51.0.0",
     "help": "^3.0.2",
     "long": "^4.0.0",
-    "node-fetch": "^2.6.0",
-    "register-scheme": "github:devsnek/node-register-scheme",
-    "websocket": "^1.0.31",
+    "node-fetch": "^2.6.1",
+    "websocket": "^1.0.33",
     "winston": "^3.3.3",
-    "ws": "^7.3.1",
-    "wtfnode": "^0.8.1"
+    "ws": "^7.4.2",
+    "wtfnode": "^0.8.4"
   },
   "devDependencies": {},
   "scripts": {

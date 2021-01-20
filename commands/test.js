@@ -1,8 +1,21 @@
 exports.run = (client, message, args) => {
     if (message.author.id != client.config.ownerID) return message.channel.send(`> Don't touch me!`);
 
-    
-    console.log(message.author.username)
+    console.log(message.channel.guild.id)
+
+    /*console.log(client.config.guilds)
+    console.log(client.config.guilds.TEST.serverID)
+
+    let guilds = Object.keys(client.config.guilds);
+
+    console.log(guilds)
+
+    guilds.forEach((guild) => {
+        console.log(guild)
+        console.log(client.config.guilds[guild].serverID)
+    });
+*/
+
     // let server = client.guilds.cache.find(guild => guild.id == 436144798462771200).roles;
     // console.log(server)
     /*
@@ -37,7 +50,7 @@ exports.run = (client, message, args) => {
     //}
     */
 
-    console.log(client.user.id)
+    // console.log(client.user.id)
     // console.log(message.mentions.users.array().length);
     
     message.delete();

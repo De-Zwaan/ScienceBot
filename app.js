@@ -45,7 +45,7 @@ fs.readdir("./commands/", (err, files) => {
 client.resources = new Enmap();
 
 /**
- * function to load the resources that are not events or commands into memory and attach them to the client
+ * function to preload the resources that are not events or commands into memory and attach them to the client
  * 
  * @param {String} name the name of the resource to be displayed in the logs
  * @param {String} abbr the abbreviation of the name to be used as the name in the enmap
@@ -61,6 +61,7 @@ function loadResource(name, abbr, location) {
   process.stdout.write(`Loaded ${name}\n`);
 }
 
+//Execute the preloading
 // Rich Presence
 loadResource('Rich Precence',   'RPC',      './assets/rpc.js');
 // Message handler

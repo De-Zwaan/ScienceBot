@@ -21,5 +21,5 @@ module.exports = (client) => {
 
   if (!rpc) return;
 
-  // rpc.run(client);
+  rpc.run(client);
 }

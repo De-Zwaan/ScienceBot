@@ -1,4 +1,4 @@
-exports.run = (client, box) => {
+exports.run = (client) => {
     const fs = require("fs");
     const boxPath = `./box.json`
 
@@ -21,84 +21,87 @@ exports.run = (client, box) => {
         return currentDayOfYear
     }
 
-    // Reading the last time the color has changed form box.json
-    fs.readFile(boxPath, `utf-8`, function (err, data) {
-        if (err) throw err;
+    // https://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion 
+    function hslToRgb(h, s, l) {
+        let r, g, b;
 
-        let box = JSON.parse(data);
-
-        let Time = box.date;
-
-        // Getting the current date
-        let currentDate = new Date();
-
-        let dayOfYear = getDayOfYear(currentDate);
-
-        // If the date in box.json was the same, return
-        if (Time == `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`) return;
-
-        // Setting up the new color
-        let newRoleColor = new Color(map(dayOfYear, 1, 365, 0, 1), 0.7, 0.5);
-
-        function Color(h, s, l) {
-            let color = hslToRgb(h, s, l);
-            this.r = Math.round(color[0]);
-            this.g = Math.round(color[1]);
-            this.b = Math.round(color[2]);
-        }
-
-        // https://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion 
-        function hslToRgb(h, s, l) {
-            let r, g, b;
-
-            if (s == 0) {
-                r = g = b = l; // achromatic
-            } else {
-                var hue2rgb = function hue2rgb(p, q, t) {
-                    if (t < 0) t += 1;
-                    if (t > 1) t -= 1;
-                    if (t < 1 / 6) return p + (q - p) * 6 * t;
-                    if (t < 1 / 2) return q;
-                    if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-                    return p;
-                }
-
-                let q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-                let p = 2 * l - q;
-                r = hue2rgb(p, q, h + 1 / 3);
-                g = hue2rgb(p, q, h);
-                b = hue2rgb(p, q, h - 1 / 3);
+        if (s == 0) {
+            r = g = b = l; // achromatic
+        } else {
+            var hue2rgb = function hue2rgb(p, q, t) {
+                if (t < 0) t += 1;
+                if (t > 1) t -= 1;
+                if (t < 1 / 6) return p + (q - p) * 6 * t;
+                if (t < 1 / 2) return q;
+                if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+                return p;
             }
 
-            return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+            let q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+            let p = 2 * l - q;
+            r = hue2rgb(p, q, h + 1 / 3);
+            g = hue2rgb(p, q, h);
+            b = hue2rgb(p, q, h - 1 / 3);
         }
 
-        // Setting the current date in box.json
-        box.date = `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
+        return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+    }
 
-        let printR = newRoleColor.r < 16 ? "0" + newRoleColor.r.toString(16) : newRoleColor.r.toString(16);
-        let printG = newRoleColor.g < 16 ? "0" + newRoleColor.g.toString(16) : newRoleColor.g.toString(16);
-        let printB = newRoleColor.b < 16 ? "0" + newRoleColor.b.toString(16) : newRoleColor.b.toString(16);
+    function changeColour(newRolecolour) {
+        // Create hex code for console log
+        let printR = newRolecolour.r < 16 ? "0" + newRolecolour.r.toString(16) : newRolecolour.r.toString(16);
+        let printG = newRolecolour.g < 16 ? "0" + newRolecolour.g.toString(16) : newRolecolour.g.toString(16);
+        let printB = newRolecolour.b < 16 ? "0" + newRolecolour.b.toString(16) : newRolecolour.b.toString(16);
 
-        // Getting the path to the role of the user
-        TESTRole = client.guilds.cache.find(guild => guild.id == 500671784627208205).roles.cache.find(role => role.id == 535551545190907914)
-        // Changing the color of the role
-        TESTRole.setColor([newRoleColor.r, newRoleColor.g, newRoleColor.b]).catch(function (err) {
-            if (err) throw err;
+        let guilds = Object.keys(client.config.guilds);
+
+        guilds.forEach((guild) => {
+            let serverID = client.config.guilds[guild].serverID
+            let roleID = client.config.guilds[guild].colourChangingRoleID
+
+            // Getting the path to the role of the user
+            role = client.guilds.cache.find(guild => guild.id == serverID).roles.cache.find(role => role.id == roleID)
+
+            // Changing the colour of the role
+            role.setColor([newRolecolour.r, newRolecolour.g, newRolecolour.b]).catch(function (err) {
+                if (err) throw err;
+            });
+
+            // Log the event
+            console.log(`${Date()}\tSet colour in ${client.guilds.cache.find(guild => guild.id == serverID).name} to #${printR}${printG}${printB}.`);
         });
-        console.log(`Set color in ${client.guilds.cache.find(guild => guild.id == 500671784627208205).name} to #${printR}${printG}${printB}, at ${currentDate}.`);
+    }
 
-        // Getting the path to the role of the user
-        TGSRole = client.guilds.cache.find(guild => guild.id == 436144798462771200).roles.cache.find(role => role.id == 593892108700745731)
-        // Changing the color of the role
-        TGSRole.setColor([newRoleColor.r, newRoleColor.g, newRoleColor.b]).catch(function (err) {
-            if (err) throw err;
-        });
-        console.log(`Set color in ${client.guilds.cache.find(guild => guild.id == 436144798462771200).name} to #${printR}${printG}${printB}, at ${currentDate}.`);
+    // Get the last logged time from the box
+    let Time = client.box.date;
 
-        // Writing everything to box.json
-        fs.writeFile(boxPath, JSON.stringify(box), `utf-8`, function (err) {
-            if (err) throw err;
-        });
+    // Getting the current date
+    let currentDate = new Date();
+
+    let dayOfYear = getDayOfYear(currentDate);
+
+    // If the date in box.json was the same, return
+    if (Time == `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`) return;
+
+    // Setting up the new colour
+    let newRolecolour = new Colour(map(dayOfYear, 1, 365, 0, 1), 0.7, 0.5);
+
+    function Colour(h, s, l) {
+        let colour = hslToRgb(h, s, l);
+        this.r = Math.round(colour[0]);
+        this.g = Math.round(colour[1]);
+        this.b = Math.round(colour[2]);
+    }
+
+    // Change the colour to the newRoleColour
+    changeColour(newRolecolour);
+
+
+    // Setting the current date in box.json
+    client.box.date = `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
+
+    // Log the current time
+    fs.writeFile(boxPath, JSON.stringify(client.box), `utf-8`, function (err) {
+        if (err) throw err;
     });
 };

@@ -1,5 +1,5 @@
 exports.run = (client, message) => {
-  console.log(message);
+  // console.log(message);
   let messageLowerCase = message.content.toLowerCase();
     
   if (message.channel.guild.id == client.config.guilds.TEST.serverID) {

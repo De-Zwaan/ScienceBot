@@ -7,6 +7,7 @@
   "dependencies": {
     "async": "^3.2.0",
     "bufferutil": "^4.0.3",
+    "discord-rpc": "^3.1.4",
     "discord.js": "^12.5.1",
     "enmap": "^5.8.2",
     "googleapis": "^51.0.0",

@@ -16,7 +16,7 @@
     "node-fetch": "^2.6.1",
     "websocket": "^1.0.33",
     "winston": "^3.3.3",
-    "ws": "^7.4.2",
+    "ws": "^7.4.6",
     "wtfnode": "^0.8.4"
   },
   "devDependencies": {},

@@ -47,44 +47,25 @@ exports.run = (client) => {
         return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
     }
 
-    function changeColour(newRolecolour) {
+    function changeColour(newRolecolour, guild) {
+        let serverID = client.config.guilds[guild].serverID
+        let roleID = client.config.guilds[guild].colourChangingRoleID
+        
+        // Getting the path to the role of the user
+        role = client.guilds.cache.find(guild => guild.id == serverID).roles.cache.find(role => role.id == roleID);
+        
+        // Changing the colour of the role
+        role.setColor([newRolecolour.r, newRolecolour.g, newRolecolour.b]).catch(function (err) {
+            if (err) throw err;
+        });
+        
         // Create hex code for console log
         let printR = newRolecolour.r < 16 ? "0" + newRolecolour.r.toString(16) : newRolecolour.r.toString(16);
         let printG = newRolecolour.g < 16 ? "0" + newRolecolour.g.toString(16) : newRolecolour.g.toString(16);
         let printB = newRolecolour.b < 16 ? "0" + newRolecolour.b.toString(16) : newRolecolour.b.toString(16);
-
-        let guilds = Object.keys(client.config.guilds);
-
-        guilds.forEach((guild) => {
-            let serverID = client.config.guilds[guild].serverID
-            let roleID = client.config.guilds[guild].colourChangingRoleID
-
-            // Getting the path to the role of the user
-            role = client.guilds.cache.find(guild => guild.id == serverID).roles.cache.find(role => role.id == roleID)
-
-            // Changing the colour of the role
-            role.setColor([newRolecolour.r, newRolecolour.g, newRolecolour.b]).catch(function (err) {
-                if (err) throw err;
-            });
-
-            // Log the event
-            console.log(`${Date()}\tSet colour in ${client.guilds.cache.find(guild => guild.id == serverID).name} to #${printR}${printG}${printB}.`);
-        });
+        // Log the event
+        console.log(`${Date()}\tSet colour in ${client.guilds.cache.find(guild => guild.id == serverID).name} to #${printR}${printG}${printB}.`);
     }
-
-    // Get the last logged time from the box
-    let Time = client.box.date;
-
-    // Getting the current date
-    let currentDate = new Date();
-
-    let dayOfYear = getDayOfYear(currentDate);
-
-    // If the date in box.json was the same, return
-    if (Time == `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`) return;
-
-    // Setting up the new colour
-    let newRolecolour = new Colour(map(dayOfYear, 1, 365, 0, 1), 0.7, 0.5);
 
     function Colour(h, s, l) {
         let colour = hslToRgb(h, s, l);
@@ -93,9 +74,27 @@ exports.run = (client) => {
         this.b = Math.round(colour[2]);
     }
 
-    // Change the colour to the newRoleColour
-    changeColour(newRolecolour);
+    // Get the last logged date from the box
+    let Time = client.box.date;
 
+    // Get the current date
+    let currentDate = new Date();
+
+    // If the date in the box was the same, return
+    if (Time == `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`) return;
+    
+    // Setting up the new colour based on the day of the year
+    let dayOfYear = getDayOfYear(currentDate);
+    let newRolecolour = new Colour(map(dayOfYear, 1, 365, 0, 1), 0.7, 0.5);
+
+    // Get the different guilds from config.json
+    let guilds = Object.keys(client.config.guilds);
+
+    // Run changeColour for every role in config.json
+    guilds.forEach((guild) => {
+        // Change the colour to the newRoleColour
+        changeColour(newRolecolour, guild);
+    });
 
     // Setting the current date in box.json
     client.box.date = `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
